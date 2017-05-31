@@ -73,36 +73,53 @@ styleApp.getStylePieces = function() {
 
 
 styleApp.displayClothesPieces = function(styleData){
-			// console.log('catData', catData.id);
-			// if catData is longer than than 0 then do this stuff: 
-			// const catDataId = catData.id;
+	const category = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
 
-			// give us a list of products where catdata id equals your query 
+	styleData.products.forEach(function(id){
+		const categoryId = id.categories[0].id
+
+			// give us a list of products where styleData products match a category ID in the const category array
 			const filteredCatEl = styleData.products.filter(function(el){
-				return (el.categories[0].id === 'shortsleeve-tops');
+				return (el.categories[0].id === categoryId)
 			});
 			console.log('can you see this?', filteredCatEl);
 
+			filteredCatEl.forEach(function(name){
+				const prodName = $('<h3>').text(name.name);
+				const prodImg = $('<img>').attr('src', name.image.sizes.Large.url)
+
+				$("#clothes").append(prodName, prodImg);
+			});
+		});
+	};
 
 
-	styleData.products.forEach(function(clothesData){
-		clothesData.categories.forEach(function(catData){
-			const catEl= $('<h5>').text(catData.id);
-
-		// "womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"
-			const imgEl= $('<img>').attr('src', clothesData.image.sizes.Large.url);
+// forEach object in the array, select the name and img, then append it to the page
 
 
 
-		$("#clothes").append(catEl, imgEl, filteredCatEl);
+
+
+
+
+	// styleData.products.forEach(function(clothesData){
+	// 	clothesData.categories.forEach(function(catData){
+	// 		const catEl= $('<h5>').text(catData.id);
+
+		
+			// const imgEl= $('<img>').attr('src', clothesData.image.sizes.Large.url);
+
+
+
+		
 
 		
 
 		// clothesData.alternateImages.forEach(function(imgData){
 	// });
-			});
-		});
-};
+// 			});
+// 		});
+
 
 
 //THIS HAS TO BE DONE TODAY (JAVASCRIPT):
