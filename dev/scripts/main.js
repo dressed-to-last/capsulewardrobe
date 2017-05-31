@@ -33,16 +33,16 @@ styleApp.displayWeatherPieces = function(weather) {
 
 
 styleApp.getStylePieces = function() {
-	// $.ajax({
-	// 	url: 'http://api.shopstyle.com/api/v2/categories',
-	// 	method: 'GET',
-	// 	dataType: 'json',
-	// 	data: {
-	// 		pid: styleApp.key
-	// 	}
-	// }).then(function(res){
-	// 	console.log(res);
-	// });
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/categories',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key
+		}
+	}).then(function(res){
+		console.log(res);
+	});
 
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
@@ -62,15 +62,14 @@ styleApp.displayClothesPieces = function(styleData){
 		clothesData.categories.forEach(function(catData){
 			const catEl= $('<h5>').text(catData.id);
 			
-		clothesData.alternateImages.forEach(function(imgData){
-			const imgEl= $('<img>').attr('src', imgData.sizes.Large.url);
+		// clothesData.alternateImages.forEach(function(imgData){
+			const imgEl= $('<img>').attr('src', clothesData.image.sizes.Large.url);
 
 		$("#clothes").append(catEl, imgEl);
 
+			});
 		});
-		});
-
-	});
+	// });
 };
 
 
