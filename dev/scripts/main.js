@@ -65,66 +65,33 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		console.log(res);
-		styleApp.displayClothesPieces(res);
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
 	});
 };
 
 
 
-styleApp.displayClothesPieces = function(styleData){
+styleApp.filterClothesPieces = function(styleData){
 	const category = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
+	// console.log('styledata before', styleData);
+	styleData.products.forEach(function(product){
+		var productCategory = product.categories[0].id;
 
-	styleData.products.forEach(function(id){
-		const categoryId = id.categories[0].id
-
-			// give us a list of products where styleData products match a category ID in the const category array
-			const filteredCatEl = styleData.products.filter(function(el){
-				return (el.categories[0].id === categoryId)
-			});
-			console.log('can you see this?', filteredCatEl);
-
-			filteredCatEl.forEach(function(name){
-				const prodName = $('<h3>').text(name.name);
-				const prodImg = $('<img>').attr('src', name.image.sizes.Large.url)
-
-				$("#clothes").append(prodName, prodImg);
-			});
-		});
-	};
+		var filteredCategoryNum = category.indexOf(productCategory);
+		if (filteredCategoryNum > -1) {
+			// then display on page 
+			styleApp.displayClothesPieces(product);
+		}
+	});
+};
 
 
-// forEach object in the array, select the name and img, then append it to the page
+styleApp.displayClothesPieces = function(product) {
+	console.log(product);
+	// const imgEl = $('<img>').attr('src', product.)
 
-
-
-
-
-
-
-	// styleData.products.forEach(function(clothesData){
-	// 	clothesData.categories.forEach(function(catData){
-	// 		const catEl= $('<h5>').text(catData.id);
-
-		
-			// const imgEl= $('<img>').attr('src', clothesData.image.sizes.Large.url);
-
-
-
-		
-
-		
-
-		// clothesData.alternateImages.forEach(function(imgData){
-	// });
-// 			});
-// 		});
-
-
-
-//THIS HAS TO BE DONE TODAY (JAVASCRIPT):
-//filter categories
-//connect to weather in if else statement
+}
 
 
 
