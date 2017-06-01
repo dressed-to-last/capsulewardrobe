@@ -11,7 +11,7 @@ styleApp.init = function(){
 //when user clicked "create my wardrobe" in the header, go to the library section.
 //when user location is activated, display weather data.
 //display clothes according to user's location temperature (above 20 degrees show summer clothes, below 20 degrees show autumn clothes).
-//user select from library and stored in their personal capsule wardrobe.
+//user selects products from library and product is stored in their personal capsule wardrobe.
 //when user select a product, counter of 30 decreases by 1; when user unclicked the product, the counter increases.
 //when user clicks the filter button (eg. all, top, bottom, jackets, selected products) display the library according to the clicked button.
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
@@ -73,28 +73,42 @@ styleApp.getStylePieces = function() {
 
 
 styleApp.displayClothesPieces = function(styleData){
-	const category = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
 
 	styleData.products.forEach(function(id){
+		const category = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
 		const categoryId = id.categories[0].id
 
-			// give us a list of products where styleData products match a category ID in the const category array
-			const filteredCatEl = styleData.products.filter(function(el){
-				return (el.categories[0].id === categoryId)
-			});
-			console.log('can you see this?', filteredCatEl);
+		// give us a list of products where styleData products match a category ID in the const category array
+		// const filteredCatEl = styleData.products.filter(function(el){
+		// 	return (el.categories[0].id === categoryId)
+		// });
+		// console.log('can you see this?', filteredCatEl);
 
-			filteredCatEl.forEach(function(name){
-				const prodName = $('<h3>').text(name.name);
-				const prodImg = $('<img>').attr('src', name.image.sizes.Large.url)
 
-				$("#clothes").append(prodName, prodImg);
+
+			// filteredCatEl.forEach(function(name){
+
+				//for each item in the category array see if item matches categoryId, if true, append name and img to page
+				category.forEach(function (item){
+					if (item === categoryId) {
+						var prodName = $('<h3>').text(name.name);
+						var prodImg = $('<img>').attr('src', name.image.sizes.Large.url)
+
+						$("#clothes").append(prodName, prodImg);
+					} else {
+						console.log('you broke it');
+					}
+				});
 			});
-		});
+		// });
 	};
 
 
-// forEach object in the array, select the name and img, then append it to the page
+// forEach product, see if the categoryId matches a string in the category Array
+// if true, append name and img to the page
+
+
+
 
 
 
