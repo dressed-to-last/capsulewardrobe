@@ -45,16 +45,38 @@ styleApp.displayWeatherPieces = function(weather) {
 
 
 styleApp.getStylePieces = function() {
-	// $.ajax({
-	// 	url: 'http://api.shopstyle.com/api/v2/categories',
-	// 	method: 'GET',
-	// 	dataType: 'json',
-	// 	data: {
-	// 		pid: styleApp.key
-	// 	}
-	// }).then(function(res){
-	// 	console.log(res);
-	// });
+
+//grabbing products data from shopstyle with offset of 50 products in the first round
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 0,
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+
+//grabbing products data from shopstyle with offset of 50 products in the second round
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 50, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
 
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
@@ -62,87 +84,77 @@ styleApp.getStylePieces = function() {
 		dataType: 'json',
 		data: {
 			pid: styleApp.key,
+			offset: 100, 
 			limit: 50
 		}
 	}).then(function(res){
-		console.log(res);
-		styleApp.displayClothesPieces(res);
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 150, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
 	});
 };
 
 
 
-styleApp.displayClothesPieces = function(styleData){
+styleApp.filterClothesPieces = function(styleData){
+	const category = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
+	// console.log('styledata before', styleData);
+	styleData.products.forEach(function(product){
+		var productCategory = product.categories[0].id;
 
-	styleData.products.forEach(function(id){
-		const category = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
-		const categoryId = id.categories[0].id
-
-		// give us a list of products where styleData products match a category ID in the const category array
-		// const filteredCatEl = styleData.products.filter(function(el){
-		// 	return (el.categories[0].id === categoryId)
-		// });
-		// console.log('can you see this?', filteredCatEl);
+		var filteredCategoryNum = category.indexOf(productCategory);
+		if (filteredCategoryNum > -1) {
+			// then display on page 
+			styleApp.displayClothesPieces(product);
+		}
+	});
+};
 
 
+styleApp.displayClothesPieces = function(product) {
+	var img = product.image.sizes.Large.url;
+	var name = product.name;
+	const imgEl = $('<img>').attr('src', img);
+	const nameEl = $('<h4>').text(name);
 
-			// filteredCatEl.forEach(function(name){
 
-				//for each item in the category array see if item matches categoryId, if true, append name and img to page
-				category.forEach(function (item){
-					if (item === categoryId) {
-						var prodName = $('<h3>').text(name.name);
-						var prodImg = $('<img>').attr('src', name.image.sizes.Large.url)
+	$("#clothes").append(imgEl, nameEl);
+}
 
-						$("#clothes").append(prodName, prodImg);
-					} else {
-						console.log('you broke it');
-					}
-				});
-			});
-		// });
+
+
+
+//smooth scroll so results display on screen in a more obvious manner
+	$(".submitButton").on('click', function() {
+	    $('html,body').animate({
+	        scrollTop: $("#clothes").offset().top},
+	        'slow');
+	});
+
+	//reload button that will reload the page
+	//reload button that will reload the page
+	function reloadButton(){
+		$('#reloadButton').on('click', function(){
+			console.log(reloadButton);
+			location.reload();
+		});
 	};
 
-
-// forEach product, see if the categoryId matches a string in the category Array
-// if true, append name and img to the page
-
-
-
-
-
-
-
-
-
-
-	// styleData.products.forEach(function(clothesData){
-	// 	clothesData.categories.forEach(function(catData){
-	// 		const catEl= $('<h5>').text(catData.id);
-
-		
-			// const imgEl= $('<img>').attr('src', clothesData.image.sizes.Large.url);
-
-
-
-		
-
-		
-
-		// clothesData.alternateImages.forEach(function(imgData){
-	// });
-// 			});
-// 		});
-
-
-
-//THIS HAS TO BE DONE TODAY (JAVASCRIPT):
-//filter categories
-//connect to weather in if else statement
-
-
-
-
-$(function(){
+	//must add reload button to this function:
+	$(function(){
 	styleApp.init();
-});
+	reloadButton();
+	});
