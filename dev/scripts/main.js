@@ -148,7 +148,24 @@ styleApp.displayClothesPieces = function(product) {
 
 
 
+//smooth scroll so results display on screen in a more obvious manner
+	$(".submitButton").on('click', function() {
+	    $('html,body').animate({
+	        scrollTop: $("#clothes").offset().top},
+	        'slow');
+	});
 
-$(function(){
+	//reload button that will reload the page
+	//reload button that will reload the page
+	function reloadButton(){
+		$('#reloadButton').on('click', function(){
+			console.log(reloadButton);
+			location.reload();
+		});
+	};
+
+	//must add reload button to this function:
+	$(function(){
 	styleApp.init();
-});
+	reloadButton();
+	});
