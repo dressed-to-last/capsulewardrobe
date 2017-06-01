@@ -56,12 +56,60 @@ styleApp.getStylePieces = function() {
 	// 	console.log(res);
 	// });
 
+
+//grabbing products data from shopstyle with offset of 50 products in the first round
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
 		dataType: 'json',
 		data: {
 			pid: styleApp.key,
+			offset: 0,
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+
+//grabbing products data from shopstyle with offset of 50 products in the second round
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 50, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 100, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 150, 
 			limit: 50
 		}
 	}).then(function(res){
@@ -88,10 +136,15 @@ styleApp.filterClothesPieces = function(styleData){
 
 
 styleApp.displayClothesPieces = function(product) {
-	console.log(product);
-	// const imgEl = $('<img>').attr('src', product.)
+	var img = product.image.sizes.Large.url;
+	var name = product.name;
+	const imgEl = $('<img>').attr('src', img);
+	const nameEl = $('<h4>').text(name);
 
+
+	$("#clothes").append(imgEl, nameEl);
 }
+
 
 
 
