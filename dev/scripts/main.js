@@ -110,30 +110,49 @@ styleApp.getStylePieces = function() {
 
 
 styleApp.filterClothesPieces = function(styleData){
-	const category = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
-	// console.log('styledata before', styleData);
-	styleData.products.forEach(function(product){
-		var productCategory = product.categories[0].id;
+    const warmCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
 
-		var filteredCategoryNum = category.indexOf(productCategory);
-		if (filteredCategoryNum > -1) {
-			// then display on page 
-			styleApp.displayClothesPieces(product);
-		}
-	});
+    const coldCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
+
+    styleData.products.forEach(function(product){
+        var productCategory = product.categories[0].id;
+
+        var filteredCategoryNum = warmCategory.indexOf(productCategory);
+        if (filteredCategoryNum > -1) {
+            // then display on page 
+            styleApp.displayWarmClothesPieces(product);
+        }
+    });
+    styleData.products.forEach(function(product){
+        var productCategory = product.categories[0].id;
+
+        var filteredCategoryNum = coldCategory.indexOf(productCategory);
+        if (filteredCategoryNum > -1) {
+            // then display on page 
+            styleApp.displayColdClothesPieces(product);
+        }
+    });
 };
 
 
-styleApp.displayClothesPieces = function(product) {
-	var img = product.image.sizes.Large.url;
-	var name = product.name;
-	const imgEl = $('<img>').attr('src', img);
-	const nameEl = $('<h4>').text(name);
 
+styleApp.displayWarmClothesPieces = function(product) {
+    var img = product.image.sizes.Large.url;
+    var name = product.name;
+    const imgEl = $('<img>').attr('src', img);
+    const nameEl = $('<h4>').text(name);
 
-	$("#clothes").append(imgEl, nameEl);
+    $("#clothes").append(imgEl, nameEl);
 }
 
+styleApp.displayColdClothesPieces = function(product) {
+    var img = product.image.sizes.Large.url;
+    var name = product.name;
+    const imgEl = $('<img>').attr('src', img);
+    const nameEl = $('<h4>').text(name);
+
+    $("#clothes").append(imgEl, nameEl);
+}
 
 
 
