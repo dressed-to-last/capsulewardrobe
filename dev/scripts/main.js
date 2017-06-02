@@ -5,10 +5,11 @@ styleApp.key = 'uid9849-39423043-50';
 
 
 styleApp.init = function(){
-	styleApp.getStylePieces();
 	styleApp.getWeatherPieces();
+	styleApp.getStylePieces();
+	
 
-	//styleApp.reloadButton();
+	reloadButton();
 	styleApp.countProducts();
 };
 
@@ -199,9 +200,9 @@ styleApp.getStylePieces = function() {
 
 
 styleApp.filterClothesPieces = function(styleData){
-    const warmCategory = ["womens-tops", "casual-pants", "shortsleeve-tops", "cropped-jeans", "relaxed-jeans", "skinny-jeans", "stretch-jeans", "straight-leg-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "shorts"];
+    const warmCategory = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "casual-pants", "shortsleeve-tops", "cropped-jeans", "relaxed-jeans", "skinny-jeans", "cropped-pants", "dress-pants", "stretch-jeans", "straight-leg-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "shorts"];
 
-    const coldCategory = ["skinny-jeans", "casual-pants", "stretch-jeans", "leggings", "distressed-jeans", "bootcut-jeans", "cropped-jeans", "straight-leg-jeans", "relaxed-jeans", "flared-jeans", "classic-jeans", "longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters", "coats", "casual-jackets", "denim-jackets", "fur-and-shearling-coats", "leather-andsuede-coats", "raincoats-and-trenchcoats"];
+    const coldCategory = ["skinny-jeans", "tunic-tops", "halter-tops", "cashmere-tops", "tees-and-tshirts", "camisole-tops", "button-front-tops", "casual-pants", "stretch-jeans", "leggings", "distressed-jeans", "bootcut-jeans", "cropped-pants", "cropped-jeans", "straight-leg-jeans", "relaxed-jeans", "flared-jeans", "classic-jeans", "dress-pants", "longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters", "coats", "casual-jackets", "denim-jackets", "fur-and-shearling-coats", "leather-andsuede-coats", "raincoats-and-trenchcoats"];
 
     styleApp.displayClothesByTemp = function(tempResults){
     	console.log("the current temp is ", tempResults);
@@ -213,7 +214,7 @@ styleApp.filterClothesPieces = function(styleData){
 	        var productCategory = product.categories[0].id;
 	        var filteredCategoryNum = warmCategory.indexOf(productCategory);
 
-	        if (filteredCategoryNum > -1 && tempResults > 20) {
+	        if (filteredCategoryNum > -1 && tempResults > 10) {
 	            // then display on page 
 	            // styleApp.displayWarmClothesPieces(product);
 	            var img = product.image.sizes.Large.url;
@@ -230,7 +231,7 @@ styleApp.filterClothesPieces = function(styleData){
 	        var productCategory = product.categories[0].id;
 	        var filteredCategoryNum = coldCategory.indexOf(productCategory);
 
-	        if (filteredCategoryNum > -1 && tempResults < 20) {
+	        if (filteredCategoryNum > -1 && tempResults < 10) {
 	            // then display on page 
 	            // styleApp.displayColdClothesPieces(product);
 	            var img = product.image.sizes.Large.url;
