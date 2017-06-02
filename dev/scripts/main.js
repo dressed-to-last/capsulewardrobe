@@ -4,8 +4,8 @@ styleApp.weatherKey = "62166a9499478fb8";
 styleApp.key = 'uid9849-39423043-50';
 
 styleApp.init = function(){
-	styleApp.getStylePieces();
 	styleApp.getWeatherPieces();
+	styleApp.getStylePieces();
 	// styleApp.reloadButton();
 	styleApp.countProducts();
 };
@@ -34,7 +34,8 @@ styleApp.countProducts = function(){
 		$("#userCounterClicks").append(counterNum);
 
 		if (counter <= 0) {
-			return;
+			counter = 1;
+			console.log("no more products left!");
 		}
 	});
 }
@@ -49,7 +50,6 @@ styleApp.getWeatherPieces = function() {
 	})
 	.then(function(res){
 		styleApp.displayWeatherPieces(res);
-		styleApp.displayAppropriateClothes(res);
 	});
 };
 
@@ -131,51 +131,179 @@ styleApp.getStylePieces = function() {
 		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 200, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 250, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 300, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 350, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 400, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 450, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
 };
 
 
 
 styleApp.filterClothesPieces = function(styleData){
-    const warmCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts"];
+	const warmCategory = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "casual-pants", "shortsleeve-tops", "cropped-jeans", "relaxed-jeans", "skinny-jeans", "cropped-pants", "dress-pants", "stretch-jeans", "straight-leg-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "shorts"];
 
-    const coldCategory = ["skinny-jeans", "stretch-jeans", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
+    const coldCategory = ["skinny-jeans", "tunic-tops", "halter-tops", "cashmere-tops", "tees-and-tshirts", "camisole-tops", "button-front-tops", "casual-pants", "stretch-jeans", "leggings", "distressed-jeans", "bootcut-jeans", "cropped-pants", "cropped-jeans", "straight-leg-jeans", "relaxed-jeans", "flared-jeans", "classic-jeans", "dress-pants", "longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters", "coats", "casual-jackets", "denim-jackets", "fur-and-shearling-coats", "leather-andsuede-coats", "raincoats-and-trenchcoats"];
 
     styleApp.displayClothesByTemp = function(tempResults){
     	console.log("the current temp is ", tempResults);
 
-	// if temperature is above 20C display WarmClothesPieces,
-	// if temperature is below 20C display ColdClothesPieces,
-
+	// if temperature is above 10C display WarmClothesPieces.
 	    styleData.products.forEach(function(product){
 	        var productCategory = product.categories[0].id;
 	        var filteredCategoryNum = warmCategory.indexOf(productCategory);
 
-	        if (filteredCategoryNum > -1 && tempResults > 20) {
+	        if (filteredCategoryNum > -1 && tempResults > 10) {
 	            // then display on page 
 	            // styleApp.displayWarmClothesPieces(product);
 	            var img = product.image.sizes.Large.url;
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-	            $("#clothes").append(imgEl, nameEl);
-	            console.log("temp is above 20!")
+	            const container = $('<div class="element-item">').append(imgEl, nameEl);
+
+	            $("#clothes").append(container);
+	            console.log("temp is above 10!");
 	        }
+
+	        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
+	        if (product.categories[0].id == "tops" || 
+	        	product.categories[0].id == "dresses" || 
+	        	product.categories[0].id == "jackets" || 
+	        	product.categories[0].id == "coats" ||
+	        	product.categories[0].id == "trenchcoats" ||
+	        	product.categories[0].id == "tshirts" ||
+	        	product.categories[0].id == "sweaters" ||
+	        	product.categories[0].id == "sweatshirts") {
+	        	$("div.element-item").addClass("top");
+	        } 
+
+	         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
+	        if (product.categories[0].id == "jeans" || 
+	        	product.categories[0].id == "pants" || 
+	        	product.categories[0].id == "skirts" || 
+	        	product.categories[0].id == "leggings") {
+	        	$("div.element-item").addClass("bottom");
+	        } 
 	    });
 
+
+	// if temperature is below 10C display ColdClothesPieces.
 	    styleData.products.forEach(function(product){
 	        var productCategory = product.categories[0].id;
 	        var filteredCategoryNum = coldCategory.indexOf(productCategory);
 
-	        if (filteredCategoryNum > -1 && tempResults < 20) {
+	        if (filteredCategoryNum > -1 && tempResults < 10) {
 	            // then display on page 
 	            // styleApp.displayColdClothesPieces(product);
 	            var img = product.image.sizes.Large.url;
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-	            $("#clothes").append(imgEl, nameEl);
-	            console.log("temp is below 20!")
+	            const container = $('<div class="element-item">').append(imgEl, nameEl);
+
+	            $("#clothes").append(container);
+	            console.log("temp is below 10!");
 	        }
+	        
+	        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
+	        if (product.categories[0].id == "tops" || 
+	        	product.categories[0].id == "dresses" || 
+	        	product.categories[0].id == "jackets" || 
+	        	product.categories[0].id == "coats" ||
+	        	product.categories[0].id == "trenchcoats" ||
+	        	product.categories[0].id == "tshirts" ||
+	        	product.categories[0].id == "sweaters" ||
+	        	product.categories[0].id == "sweatshirts") {
+	        	$("div.element-item").addClass("top");
+	        } 
+
+	         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
+	        if (product.categories[0].id == "jeans" || 
+	        	product.categories[0].id == "pants" || 
+	        	product.categories[0].id == "skirts" || 
+	        	product.categories[0].id == "leggings") {
+	        	$("div.element-item").addClass("bottom");
+	        }  
 	    });
 	}
 }
@@ -188,7 +316,7 @@ $(".submitButton").on('click', function() {
         'slow');
 });
 
-//reload button that will reload the page
+
 //reload button that will reload the page
 function reloadButton(){
 	$('#reloadButton').on('click', function(){
