@@ -4,8 +4,8 @@ styleApp.weatherKey = "62166a9499478fb8";
 styleApp.key = 'uid9849-39423043-50';
 
 styleApp.init = function(){
-	styleApp.getStylePieces();
 	styleApp.getWeatherPieces();
+	styleApp.getStylePieces();
 	// styleApp.reloadButton();
 	styleApp.countProducts();
 };
@@ -13,8 +13,10 @@ styleApp.init = function(){
 //when user clicked "create my wardrobe" in the header, go to the library section.
 //when user location is activated, display weather data.
 //display clothes according to user's location temperature (above 20 degrees show summer clothes, below 20 degrees show autumn clothes).
-//user selects products from library and product is stored in their personal capsule wardrobe.
 //when user select a product, counter of 30 decreases by 1; when user unclicked the product, the counter increases.
+
+
+//user selects products from library and product is stored in their personal capsule wardrobe.
 //when user clicks the filter button (eg. all, top, bottom, jackets, selected products) display the library according to the clicked button.
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
 
@@ -26,18 +28,21 @@ styleApp.init = function(){
 //count number of products user has left
 styleApp.countProducts = function(){
 	var counter = 10;
-	$(".counterButton").click(function() {
+
+	$(".counterButton").click(function(){
 
 		$("#userCounterClicks").empty();
 		counter = counter - 1;
 		const counterNum = $("<p>").text(counter);
 		$("#userCounterClicks").append(counterNum);
-
-		if (counter <= 0) {
-			return;
+		if (counter <= 0){
+			counter = 1;
+			console.log("no more products left!");
 		}
-	});
+
+	})
 }
+
 
 
 //ajax call to get weather data
@@ -159,7 +164,12 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-	            $("#clothes").append(imgEl, nameEl);
+
+
+	            // const productContainer = $('<div class = "productContainer">').attr(nameEl, imgEl);
+
+
+	            $(".grid").append($('<div class = "productContainer">').attr(nameEl, imgEl));
 	            console.log("temp is above 20!")
 	        }
 	    });
