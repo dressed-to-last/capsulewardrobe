@@ -1,11 +1,75 @@
+//need to add these to variables
+// font-family: 'Montserrat', sans-serif;
+// font-family: 'Roboto', sans-serif;
+
 @import 'setup';
 
-.container {
-	max-width: 900px;
+
+//general styles 
+.wrapper {
+	max-width: 1000px;
 	margin: 0 auto;
+}
+
+body {
+	margin: 0 auto;
+	font-family: 'Montserrat', sans-serif;
+}
+
+//header styles
+
+header {
+	margin-bottom: 100px;
+	height: 100vh;
+	background-image: url('../../assets/header.png');
 }
 
 h1 {
 	font-size: 150px;
 	color: red;
 }
+
+.takeMeToMyClosetButton {
+	text-align: center;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+nav {
+	position: fixed;
+	width: 100%;
+	li {
+		list-style-type: none;
+		padding-left: 30px;
+	}
+	.fa {
+		color: red;
+	}
+}
+
+.nav1 {
+	background-color: #E5E2CC;
+	padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 25px;
+}
+
+.nav2 {
+	float: right;
+	background-color: #E5E2CC;
+	padding-top: 10px;
+	li {
+		padding: 0;
+    	padding-right: 16px;
+	}
+}
+
+#weather li {
+	float: right;
+	letter-spacing: 1px;
+}
+
+
+//header styles ends

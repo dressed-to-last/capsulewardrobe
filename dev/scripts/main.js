@@ -3,6 +3,7 @@ var styleApp = {};
 styleApp.weatherKey = "62166a9499478fb8";
 styleApp.key = 'uid9849-39423043-50';
 
+
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
@@ -60,6 +61,8 @@ styleApp.getWeatherPieces = function() {
 	});
 };
 
+//end of ajax call
+
 
 
 //after getting data from getWeatherPieces, display elements needed on the page.
@@ -69,6 +72,7 @@ styleApp.displayWeatherPieces = function(weather) {
 	const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
 	const cityEl = $("<p>").text(weatherData.observation_location.city);
 	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
+
 	const temp = weatherData.temp_c;
 
 	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
@@ -76,6 +80,8 @@ styleApp.displayWeatherPieces = function(weather) {
 	styleApp.displayClothesByTemp(temp);
 
 };
+
+
 
 
 styleApp.getStylePieces = function() {
@@ -90,8 +96,8 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
+
 	});
 
 
@@ -106,7 +112,6 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
@@ -226,7 +231,10 @@ styleApp.getStylePieces = function() {
 
 
 
+
+
 styleApp.filterClothesPieces = function(styleData){
+
 	const warmCategory = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "casual-pants", "shortsleeve-tops", "cropped-jeans", "relaxed-jeans", "skinny-jeans", "cropped-pants", "dress-pants", "stretch-jeans", "straight-leg-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "shorts"];
 
     const coldCategory = ["skinny-jeans", "tunic-tops", "halter-tops", "cashmere-tops", "tees-and-tshirts", "camisole-tops", "button-front-tops", "casual-pants", "stretch-jeans", "leggings", "distressed-jeans", "bootcut-jeans", "cropped-pants", "cropped-jeans", "straight-leg-jeans", "relaxed-jeans", "flared-jeans", "classic-jeans", "dress-pants", "longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters", "coats", "casual-jackets", "denim-jackets", "fur-and-shearling-coats", "leather-andsuede-coats", "raincoats-and-trenchcoats"];
@@ -352,7 +360,6 @@ styleApp.filterClothesPieces = function(styleData){
 	}
 }
 
-
 //smooth scroll so results display on screen in a more obvious manner
 $(".submitButton").on('click', function() {
     $('html,body').animate({
@@ -372,5 +379,11 @@ function reloadButton(){
 //must add reload button to this function:
 $(function(){
 	styleApp.init();
-	reloadButton();
 });
+
+
+
+//got cold and warm functions working
+//got images printing to page
+//issue is both cold and warm are printing at once - maybe review if else statement
+
