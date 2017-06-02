@@ -7,7 +7,7 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
-	// styleApp.reloadButton();
+	styleApp.reloadButton();
 	styleApp.countProducts();
 };
 
@@ -381,9 +381,4 @@ $(function(){
 	styleApp.init();
 });
 
-
-
-//got cold and warm functions working
-//got images printing to page
-//issue is both cold and warm are printing at once - maybe review if else statement
-
+ 
