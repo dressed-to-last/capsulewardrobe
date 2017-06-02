@@ -13,8 +13,10 @@ styleApp.init = function(){
 //when user clicked "create my wardrobe" in the header, go to the library section.
 //when user location is activated, display weather data.
 //display clothes according to user's location temperature (above 20 degrees show summer clothes, below 20 degrees show autumn clothes).
-//user selects products from library and product is stored in their personal capsule wardrobe.
 //when user select a product, counter of 30 decreases by 1; when user unclicked the product, the counter increases.
+
+
+//user selects products from library and product is stored in their personal capsule wardrobe.
 //when user clicks the filter button (eg. all, top, bottom, jackets, selected products) display the library according to the clicked button.
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
 
@@ -26,7 +28,8 @@ styleApp.init = function(){
 //count number of products user has left
 styleApp.countProducts = function(){
 	var counter = 10;
-	$(".counterButton").click(function() {
+
+	$(".element-item").click(function(){
 
 		$("#userCounterClicks").empty();
 		counter = counter - 1;
@@ -37,8 +40,12 @@ styleApp.countProducts = function(){
 			counter = 1;
 			console.log("no more products left!");
 		}
-	});
+
+	})
 }
+
+
+
 
 
 //ajax call to get weather data
@@ -239,31 +246,50 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-	            const container = $('<div class="element-item">').append(imgEl, nameEl);
+	            // const container = $('<div class="element-item">').append(imgEl, nameEl);
+	            let container= '';
+	            let classNames = '';
 
-	            $("#clothes").append(container);
+		    
+	            console.log('id', product.categories[0].id);
+
+
+	            // use indexof and the array to see if it matches
+
+
+		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
+		        if (product.categories[0].id === "tops" || 
+		        	product.categories[0].id === "dresses" || 
+		        	product.categories[0].id === "jackets" || 
+		        	product.categories[0].id === "coats" ||
+		        	product.categories[0].id === "trenchcoats" ||
+		        	product.categories[0].id === "tshirts" ||
+		        	product.categories[0].id === "sweaters" ||
+		        	product.categories[0].id === "sweatshirts") {
+
+		        	 classNames += 'top';
+		        	// classNames = classNames + 'top';
+
+		        } 
+
+		         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
+		        if (product.categories[0].id === "jeans" || 
+		        	product.categories[0].id === "pants" || 
+		        	product.categories[0].id === "skirts" || 
+		        	product.categories[0].id === "leggings") {
+		   				classNames += 'bottom';
+		        	 
+		        } 
+
+		        console.log('classNames', classNames)
+		    	container = $('<div class="element-item '+ classNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
+	             
 	            console.log("temp is above 10!");
+	            console.log('container', container);
+	            // container.append(imgEl, nameEl);
+	            $('#clothes').append(container);
 	        }
 
-	        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
-	        if (product.categories[0].id == "tops" || 
-	        	product.categories[0].id == "dresses" || 
-	        	product.categories[0].id == "jackets" || 
-	        	product.categories[0].id == "coats" ||
-	        	product.categories[0].id == "trenchcoats" ||
-	        	product.categories[0].id == "tshirts" ||
-	        	product.categories[0].id == "sweaters" ||
-	        	product.categories[0].id == "sweatshirts") {
-	        	$("div.element-item").addClass("top");
-	        } 
-
-	         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
-	        if (product.categories[0].id == "jeans" || 
-	        	product.categories[0].id == "pants" || 
-	        	product.categories[0].id == "skirts" || 
-	        	product.categories[0].id == "leggings") {
-	        	$("div.element-item").addClass("bottom");
-	        } 
 	    });
 
 
@@ -279,31 +305,49 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-	            const container = $('<div class="element-item">').append(imgEl, nameEl);
+	             // const container = $('<div class="element-item">').append(imgEl, nameEl);
+	            let container= '';
+	            let classNames = '';
 
-	            $("#clothes").append(container);
-	            console.log("temp is below 10!");
+		    
+	            console.log('id', product.categories[0].id);
+
+
+	            // use indexof and the array to see if it matches
+
+
+		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
+		        if (product.categories[0].id === "tops" || 
+		        	product.categories[0].id === "dresses" || 
+		        	product.categories[0].id === "jackets" || 
+		        	product.categories[0].id === "coats" ||
+		        	product.categories[0].id === "trenchcoats" ||
+		        	product.categories[0].id === "tshirts" ||
+		        	product.categories[0].id === "sweaters" ||
+		        	product.categories[0].id === "sweatshirts") {
+
+		        	 classNames += 'top';
+		        	// classNames = classNames + 'top';
+
+		        } 
+
+		         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
+		        if (product.categories[0].id === "jeans" || 
+		        	product.categories[0].id === "pants" || 
+		        	product.categories[0].id === "skirts" || 
+		        	product.categories[0].id === "leggings") {
+		   				classNames += 'bottom';
+		        	 
+		        } 
+
+		        console.log('classNames', classNames)
+		    	container = $('<div class="element-item '+ classNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
+	             
+	            console.log("temp is above 10!");
+	            console.log('container', container);
+	            // container.append(imgEl, nameEl);
+	            $('#clothes').append(container);
 	        }
-	        
-	        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
-	        if (product.categories[0].id == "tops" || 
-	        	product.categories[0].id == "dresses" || 
-	        	product.categories[0].id == "jackets" || 
-	        	product.categories[0].id == "coats" ||
-	        	product.categories[0].id == "trenchcoats" ||
-	        	product.categories[0].id == "tshirts" ||
-	        	product.categories[0].id == "sweaters" ||
-	        	product.categories[0].id == "sweatshirts") {
-	        	$("div.element-item").addClass("top");
-	        } 
-
-	         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
-	        if (product.categories[0].id == "jeans" || 
-	        	product.categories[0].id == "pants" || 
-	        	product.categories[0].id == "skirts" || 
-	        	product.categories[0].id == "leggings") {
-	        	$("div.element-item").addClass("bottom");
-	        }  
 	    });
 	}
 }
