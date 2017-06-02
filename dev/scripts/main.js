@@ -3,9 +3,12 @@ var styleApp = {};
 styleApp.weatherKey = "62166a9499478fb8";
 styleApp.key = 'uid9849-39423043-50';
 
+
 styleApp.init = function(){
 	styleApp.getStylePieces();
 	styleApp.getWeatherPieces();
+	styleApp.displayWarmClothesPieces = function() {console.log('warm')};
+styleApp.displayColdClothesPieces = function() {console.log('cold')};
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -27,8 +30,15 @@ styleApp.getWeatherPieces = function() {
 	})
 	.then(function(res){
 		styleApp.displayWeatherPieces(res);
+		styleApp.displayAppropriateClothes(res);
 	});
 };
+
+//end of ajax call
+
+
+
+
 
 //after getting data from getWeatherPieces, display elements needed on the page.
 styleApp.displayWeatherPieces = function(weather) {
@@ -37,7 +47,6 @@ styleApp.displayWeatherPieces = function(weather) {
 	const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
 	const cityEl = $("<p>").text(weatherData.observation_location.city);
 	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
-
 	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
 };
 
@@ -45,18 +54,6 @@ styleApp.displayWeatherPieces = function(weather) {
 
 
 styleApp.getStylePieces = function() {
-	// $.ajax({
-	// 	url: 'http://api.shopstyle.com/api/v2/categories',
-	// 	method: 'GET',
-	// 	dataType: 'json',
-	// 	data: {
-	// 		pid: styleApp.key
-	// 	}
-	// }).then(function(res){
-	// 	console.log(res);
-	// });
-
-
 //grabbing products data from shopstyle with offset of 50 products in the first round
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
@@ -68,8 +65,8 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
+
 	});
 
 
@@ -84,7 +81,6 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
@@ -119,8 +115,11 @@ styleApp.getStylePieces = function() {
 };
 
 
+styleApp.displayWarmClothesPieces = function() {console.log('warm')};
+styleApp.displayColdClothesPieces = function() {console.log('cold')};
 
 styleApp.filterClothesPieces = function(styleData){
+	//styleApp.displayAppropriateClothes(temperature);
     const warmCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
 
     const coldCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
@@ -146,45 +145,61 @@ styleApp.filterClothesPieces = function(styleData){
 };
 
 
+//if the weather temperature is above 20 degrees, display the displayWarmClothesPieces
+// else, displayColdClothesPieces
 
-styleApp.displayWarmClothesPieces = function(product) {
-    var img = product.image.sizes.Large.url;
-    var name = product.name;
-    const imgEl = $('<img>').attr('src', img);
-    const nameEl = $('<h4>').text(name);
+styleApp.displayAppropriateClothes = function(temperature) {
+	if (temperature.temp_c > 20) {
 
-    $("#clothes").append(imgEl, nameEl);
-}
+		styleApp.displayWarmClothesPieces = function(product) {
 
-styleApp.displayColdClothesPieces = function(product) {
-    var img = product.image.sizes.Large.url;
-    var name = product.name;
-    const imgEl = $('<img>').attr('src', img);
-    const nameEl = $('<h4>').text(name);
+		    var img = product.image.sizes.Large.url;
+		    var name = product.name;
+		    const imgEl = $('<img>').attr('src', img);
+		    const nameEl = $('<h4>').text(name);
 
-    $("#clothes").append(imgEl, nameEl);
-}
+		    $("#clothes").append(imgEl, nameEl);
+
+		}
+		} else {
+
+		styleApp.displayColdClothesPieces = function(product) {
+		    var img = product.image.sizes.Large.url;
+		    var name = product.name;
+		    const imgEl = $('<img>').attr('src', img);
+		    const nameEl = $('<h4>').text(name);
+		    $("#clothes").append(imgEl, nameEl);
+		}
+	  }
+};
 
 
 
 //smooth scroll so results display on screen in a more obvious manner
-	$(".submitButton").on('click', function() {
-	    $('html,body').animate({
-	        scrollTop: $("#clothes").offset().top},
-	        'slow');
+$(".submitButton").on('click', function() {
+    $('html,body').animate({
+        scrollTop: $("#clothes").offset().top},
+        'slow');
+});
+
+//reload button that will reload the page
+//reload button that will reload the page
+function reloadButton(){
+	$('#reloadButton').on('click', function(){
+		console.log(reloadButton);
+		header.reload();
 	});
+};
 
-	//reload button that will reload the page
-	//reload button that will reload the page
-	function reloadButton(){
-		$('#reloadButton').on('click', function(){
-			console.log(reloadButton);
-			location.reload();
-		});
-	};
-
-	//must add reload button to this function:
-	$(function(){
+//must add reload button to this function:
+$(function(){
 	styleApp.init();
 	reloadButton();
-	});
+});
+
+
+
+
+//got cold and warm functions working
+//got images printing to page
+//issue is both cold and warm are printing at once - maybe review if else statement
