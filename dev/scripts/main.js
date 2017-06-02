@@ -29,7 +29,7 @@ styleApp.init = function(){
 styleApp.countProducts = function(){
 	var counter = 10;
 
-	$(".counterButton").click(function(){
+	$(".element-item").click(function(){
 
 		$("#userCounterClicks").empty();
 		counter = counter - 1;
@@ -42,6 +42,8 @@ styleApp.countProducts = function(){
 
 	})
 }
+
+
 
 
 
