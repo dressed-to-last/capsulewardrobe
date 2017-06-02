@@ -7,8 +7,6 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
-	
-
 	reloadButton();
 	styleApp.countProducts();
 };
@@ -245,8 +243,6 @@ styleApp.filterClothesPieces = function(styleData){
 	}
 }
 
-
-
 //smooth scroll so results display on screen in a more obvious manner
 $(".submitButton").on('click', function() {
     $('html,body').animate({
@@ -267,7 +263,6 @@ function reloadButton(){
 $(function(){
 	styleApp.init();
 });
-
 
 
 
