@@ -7,13 +7,9 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getStylePieces();
 	styleApp.getWeatherPieces();
-<<<<<<< HEAD
-	styleApp.displayWarmClothesPieces = function() {console.log('warm')};
-styleApp.displayColdClothesPieces = function() {console.log('cold')};
-=======
-	// styleApp.reloadButton();
+
+	//styleApp.reloadButton();
 	styleApp.countProducts();
->>>>>>> dc72e931099fc62a75e844b4c2c27adf07da57d5
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -55,17 +51,11 @@ styleApp.getWeatherPieces = function() {
 	})
 	.then(function(res){
 		styleApp.displayWeatherPieces(res);
-		styleApp.displayAppropriateClothes(res);
 	});
 };
 
-<<<<<<< HEAD
 //end of ajax call
 
-
-
-=======
->>>>>>> dc72e931099fc62a75e844b4c2c27adf07da57d5
 
 
 //after getting data from getWeatherPieces, display elements needed on the page.
@@ -75,26 +65,19 @@ styleApp.displayWeatherPieces = function(weather) {
 	const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
 	const cityEl = $("<p>").text(weatherData.observation_location.city);
 	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
-<<<<<<< HEAD
-=======
+
 	const temp = weatherData.temp_c;
 
->>>>>>> dc72e931099fc62a75e844b4c2c27adf07da57d5
 	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
-	// console.log("this is the temperature", temp)
 
 	styleApp.displayClothesByTemp(temp);
 
 };
 
 
-<<<<<<< HEAD
-styleApp.getStylePieces = function() {
-=======
+
 
 styleApp.getStylePieces = function() {
-
->>>>>>> dc72e931099fc62a75e844b4c2c27adf07da57d5
 //grabbing products data from shopstyle with offset of 50 products in the first round
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
@@ -111,7 +94,7 @@ styleApp.getStylePieces = function() {
 	});
 
 
-//grabbing products data from shopstyle with offset of 50 products in the second round
+//grabbing products data from shopstyle with offset of 50 more products in the second round
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -153,71 +136,72 @@ styleApp.getStylePieces = function() {
 		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 200, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 250, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 300, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
+
+	$.ajax({
+		url: 'http://api.shopstyle.com/api/v2/products',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			pid: styleApp.key,
+			offset: 350, 
+			limit: 50
+		}
+	}).then(function(res){
+		// console.log(res);
+		styleApp.filterClothesPieces(res);
+	});
 };
 
 
-styleApp.displayWarmClothesPieces = function() {console.log('warm')};
-styleApp.displayColdClothesPieces = function() {console.log('cold')};
+
+
 
 styleApp.filterClothesPieces = function(styleData){
-<<<<<<< HEAD
-	//styleApp.displayAppropriateClothes(temperature);
-    const warmCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
+    const warmCategory = ["womens-tops", "casual-pants", "shortsleeve-tops", "cropped-jeans", "relaxed-jeans", "skinny-jeans", "stretch-jeans", "straight-leg-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "shorts"];
 
-    const coldCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "long-skirts", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
-
-    styleData.products.forEach(function(product){
-        var productCategory = product.categories[0].id;
-
-        var filteredCategoryNum = warmCategory.indexOf(productCategory);
-        if (filteredCategoryNum > -1) {
-            // then display on page 
-            styleApp.displayWarmClothesPieces(product);
-        }
-    });
-    styleData.products.forEach(function(product){
-        var productCategory = product.categories[0].id;
-
-        var filteredCategoryNum = coldCategory.indexOf(productCategory);
-        if (filteredCategoryNum > -1) {
-            // then display on page 
-            styleApp.displayColdClothesPieces(product);
-        }
-    });
-};
-
-
-//if the weather temperature is above 20 degrees, display the displayWarmClothesPieces
-// else, displayColdClothesPieces
-
-styleApp.displayAppropriateClothes = function(temperature) {
-	if (temperature.temp_c > 20) {
-
-		styleApp.displayWarmClothesPieces = function(product) {
-
-		    var img = product.image.sizes.Large.url;
-		    var name = product.name;
-		    const imgEl = $('<img>').attr('src', img);
-		    const nameEl = $('<h4>').text(name);
-
-		    $("#clothes").append(imgEl, nameEl);
-
-		}
-		} else {
-
-		styleApp.displayColdClothesPieces = function(product) {
-		    var img = product.image.sizes.Large.url;
-		    var name = product.name;
-		    const imgEl = $('<img>').attr('src', img);
-		    const nameEl = $('<h4>').text(name);
-		    $("#clothes").append(imgEl, nameEl);
-		}
-	  }
-};
-=======
-    const warmCategory = ["womens-tops", "shortsleeve-tops", "cropped-jeans", "skinny-jeans", "stretch-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts"];
-
-    const coldCategory = ["skinny-jeans", "stretch-jeans", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "coats", "fur-and-shearling-coats", "leather-andsuede-coats"];
+    const coldCategory = ["skinny-jeans", "casual-pants", "stretch-jeans", "leggings", "distressed-jeans", "bootcut-jeans", "cropped-jeans", "straight-leg-jeans", "relaxed-jeans", "flared-jeans", "classic-jeans", "longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters", "coats", "casual-jackets", "denim-jackets", "fur-and-shearling-coats", "leather-andsuede-coats", "raincoats-and-trenchcoats"];
 
     styleApp.displayClothesByTemp = function(tempResults){
     	console.log("the current temp is ", tempResults);
@@ -241,6 +225,7 @@ styleApp.displayAppropriateClothes = function(temperature) {
 	        }
 	    });
 
+
 	    styleData.products.forEach(function(product){
 	        var productCategory = product.categories[0].id;
 	        var filteredCategoryNum = coldCategory.indexOf(productCategory);
@@ -258,7 +243,7 @@ styleApp.displayAppropriateClothes = function(temperature) {
 	    });
 	}
 }
->>>>>>> dc72e931099fc62a75e844b4c2c27adf07da57d5
+
 
 
 //smooth scroll so results display on screen in a more obvious manner
@@ -273,15 +258,13 @@ $(".submitButton").on('click', function() {
 function reloadButton(){
 	$('#reloadButton').on('click', function(){
 		console.log(reloadButton);
-		header.reload();
+		location.reload();
 	});
 };
 
 //must add reload button to this function:
 $(function(){
 	styleApp.init();
-<<<<<<< HEAD
-	reloadButton();
 });
 
 
@@ -290,7 +273,4 @@ $(function(){
 //got cold and warm functions working
 //got images printing to page
 //issue is both cold and warm are printing at once - maybe review if else statement
-=======
-	
-	});
->>>>>>> dc72e931099fc62a75e844b4c2c27adf07da57d5
+
