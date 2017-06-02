@@ -27,6 +27,7 @@ styleApp.getWeatherPieces = function() {
 	})
 	.then(function(res){
 		styleApp.displayWeatherPieces(res);
+		styleApp.displayAppropriateClothes(res);
 	});
 };
 
@@ -39,24 +40,13 @@ styleApp.displayWeatherPieces = function(weather) {
 	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
 
 	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
+
 };
 
 
 
 
 styleApp.getStylePieces = function() {
-	// $.ajax({
-	// 	url: 'http://api.shopstyle.com/api/v2/categories',
-	// 	method: 'GET',
-	// 	dataType: 'json',
-	// 	data: {
-	// 		pid: styleApp.key
-	// 	}
-	// }).then(function(res){
-	// 	console.log(res);
-	// });
-
-
 //grabbing products data from shopstyle with offset of 50 products in the first round
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
@@ -73,7 +63,7 @@ styleApp.getStylePieces = function() {
 	});
 
 
-//grabbing products data from shopstyle with offset of 50 products in the second round
+//grabbing products data from shopstyle with offset of 50 more products in the second round
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -131,7 +121,8 @@ styleApp.filterClothesPieces = function(styleData){
         var filteredCategoryNum = warmCategory.indexOf(productCategory);
         if (filteredCategoryNum > -1) {
             // then display on page 
-            styleApp.displayWarmClothesPieces(product);
+            // styleApp.displayWarmClothesPieces(product);
+            styleApp.displayAppropriateClothes(product);
         }
     });
     styleData.products.forEach(function(product){
@@ -140,51 +131,56 @@ styleApp.filterClothesPieces = function(styleData){
         var filteredCategoryNum = coldCategory.indexOf(productCategory);
         if (filteredCategoryNum > -1) {
             // then display on page 
-            styleApp.displayColdClothesPieces(product);
+            // styleApp.displayColdClothesPieces(product);
+            styleApp.displayAppropriateClothes(product);
         }
     });
 };
 
 
+styleApp.displayAppropriateClothes = function(temperature) {
+	if (temperature.temp_c > 20) {
+		styleApp.displayWarmClothesPieces = function(product) {
+		    var img = product.image.sizes.Large.url;
+		    var name = product.name;
+		    const imgEl = $('<img>').attr('src', img);
+		    const nameEl = $('<h4>').text(name);
 
-styleApp.displayWarmClothesPieces = function(product) {
-    var img = product.image.sizes.Large.url;
-    var name = product.name;
-    const imgEl = $('<img>').attr('src', img);
-    const nameEl = $('<h4>').text(name);
+		    $("#clothes").append(imgEl, nameEl);
+		}
 
-    $("#clothes").append(imgEl, nameEl);
-}
+	} else {
+		styleApp.displayColdClothesPieces = function(product) {
+		    var img = product.image.sizes.Large.url;
+		    var name = product.name;
+		    const imgEl = $('<img>').attr('src', img);
+		    const nameEl = $('<h4>').text(name);
 
-styleApp.displayColdClothesPieces = function(product) {
-    var img = product.image.sizes.Large.url;
-    var name = product.name;
-    const imgEl = $('<img>').attr('src', img);
-    const nameEl = $('<h4>').text(name);
-
-    $("#clothes").append(imgEl, nameEl);
+		    $("#clothes").append(imgEl, nameEl);
+		}
+	}
 }
 
 
 
 //smooth scroll so results display on screen in a more obvious manner
-	$(".submitButton").on('click', function() {
-	    $('html,body').animate({
-	        scrollTop: $("#clothes").offset().top},
-	        'slow');
+$(".submitButton").on('click', function() {
+    $('html,body').animate({
+        scrollTop: $("#clothes").offset().top},
+        'slow');
+});
+
+//reload button that will reload the page
+//reload button that will reload the page
+function reloadButton(){
+	$('#reloadButton').on('click', function(){
+		console.log(reloadButton);
+		location.reload();
 	});
+};
 
-	//reload button that will reload the page
-	//reload button that will reload the page
-	function reloadButton(){
-		$('#reloadButton').on('click', function(){
-			console.log(reloadButton);
-			location.reload();
-		});
-	};
-
-	//must add reload button to this function:
-	$(function(){
+//must add reload button to this function:
+$(function(){
 	styleApp.init();
 	reloadButton();
-	});
+});
