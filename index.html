@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="public/styles/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 
+<!--i want the bg image to be in the wrapper but think the nav bar might look better without the wrapper and going across whole screen but not sure how to disclude only bg image from wrapper -->
 
 
     <header>
@@ -35,16 +37,26 @@
 
 
 
-	<main>
-		<div id="clothes"></div>
-		<!-- Nav buttons to filter returned products-->
-		<ul class="filterNav">
-			<li><button data-filter="*">All</button></li>
-			<li><button data-filter=".tops">Tops</button></li>
-			<li><button data-filter=".bottom">Bottoms</button></li>
-			<li><button data-filter=".dresses">Dresses</button></li>
-			<li><button data-filter=".favorites">Favorites</button></li>
-		</ul>
+	<main class="wrapper2">
+        <p>TESTING CHANGES</p>
+		<div>
+			<h2>What is a wardrobe capsule, and how do I make one?</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quo aut, sit culpa! Placeat dolorem obcaecati aspernatur doloremque distinctio, omnis iste facilis laboriosam, impedit quasi a commodi. Iste facere sapiente dolore, culpa iure earum voluptatem ipsa quos. Tempore sequi eum nobis explicabo officiis voluptates doloribus natus, voluptas praesentium tenetur. Totam!</p>
+			
+		</div>
+
+
+
+	<!-- Nav buttons to filter returned products-->
+		<div class="filterNav button-group filter-button-group">
+			<button data-filter="*">All</button>
+			<button data-filter=".tops">Tops</button>
+			<button data-filter=".bottom">Bottoms</button>
+			<button data-filter=".dresses">Dresses</button>
+			<button data-filter=".favorites">Favorites</button>
+		</div>
+		<div id="clothes" class="grid wrapper"></div>
+
 		<button id="reloadButton">Build A New Closet</button>
 	</main>
 
@@ -57,10 +69,10 @@
 	</footer>
 
 
-
-
-
-
+	
+	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+	<!-- <script src="/path/to/masonry.pkgd.min.js"></script>
+	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="public/scripts/main.js"></script>
 </body>

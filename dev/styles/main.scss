@@ -8,11 +8,7 @@ $tertiaryColour: #E5E2CC;
 @import 'setup';
 
 
-
-
-
-
-//GENERAL STYLE GENERAL STYLE GENERAL STYLE
+//GENERAL STYLE 
 body {
 	margin: 0 auto;
 	font-family: 'Montserrat', sans-serif;
@@ -37,6 +33,20 @@ header {
 	background-position: cover;
 }
 
+.wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+div.element-item { 
+	width: 20%; 
+	height: 25%;
+	display: inline-block;
+	padding: 20px;
+	h4 {
+		text-align: center;
+	}
+}
 
 .myClosetButton {
 	padding: 20px;
@@ -46,6 +56,11 @@ header {
 	// top: 50%;
 	// left: 50%;
 	// transform: translate(-50%, -50%);
+}
+
+.submitButton {
+	padding: 20px;
+	font-size: 18px;
 }
 
 nav {
@@ -90,7 +105,5 @@ nav {
 }
 
 
-
-
-
 //HEADER STYLE ENDS HEADER STYLE ENDS
+
