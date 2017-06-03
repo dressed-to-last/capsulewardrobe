@@ -22,7 +22,7 @@ styleApp.init = function(){
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
 	
 
-
+//testing new upload
 
 
 
