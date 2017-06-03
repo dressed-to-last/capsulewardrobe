@@ -7,8 +7,8 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
+	// styleApp.reloadButton();
 	styleApp.countProducts();
-	//styleApp.reloadButton();
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -18,11 +18,11 @@ styleApp.init = function(){
 
 
 //user selects products from library and product is stored in their personal capsule wardrobe.
-//when user clicks the filter button (eg. all, top, bottom, jackets, selected products) display the library according to the  clicked button.
+//when user clicks the filter button (eg. all, top, bottom, jackets, selected products) display the library according to the clicked button.
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
-	
 
-//testing new upload
+
+
 
 
 
@@ -30,7 +30,7 @@ styleApp.init = function(){
 styleApp.countProducts = function(){
 	var counter = 10;
 
-	$(".element-item").click(function(){
+	$(".counterButton").click(function(){
 
 		$("#userCounterClicks").empty();
 		counter = counter - 1;
@@ -41,7 +41,6 @@ styleApp.countProducts = function(){
 			counter = 1;
 			console.log("no more products left!");
 		}
-
 	})
 }
 
@@ -68,14 +67,14 @@ styleApp.getWeatherPieces = function() {
 //after getting data from getWeatherPieces, display elements needed on the page.
 styleApp.displayWeatherPieces = function(weather) {
 	var weatherData = weather.current_observation;
-	//const weatherConditionEl = $("<p>").text(weatherData.icon);
+	const weatherConditionEl = $("<p>").text(weatherData.icon);
 	const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
 	const cityEl = $("<p>").text(weatherData.observation_location.city);
 	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
 
 	const temp = weatherData.temp_c;
 
-	$("#weather").append(weatherImgEl, tempEl, cityEl);
+	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
 
 	styleApp.displayClothesByTemp(temp);
 
@@ -85,7 +84,7 @@ styleApp.displayWeatherPieces = function(weather) {
 
 
 styleApp.getStylePieces = function() {
-//grabbing products data from shopstyle with offset of 50 products in the first round
+//requesting list of 50 products from shopstyle
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -100,8 +99,7 @@ styleApp.getStylePieces = function() {
 
 	});
 
-
-//grabbing products data from shopstyle with offset of 50 more products in the second round
+//requesting list of 50 products from shopstyle with an offset of 50 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -115,7 +113,7 @@ styleApp.getStylePieces = function() {
 		styleApp.filterClothesPieces(res);
 	});
 
-
+//requesting list of 50 products from shopstyle with an offset of 100 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -126,10 +124,10 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
+	//requesting list of 50 products from shopstyle with an offset of 150 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -140,10 +138,10 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
+	//requesting list of 50 products from shopstyle with an offset of 200 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -154,10 +152,10 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
+	//requesting list of 50 products from shopstyle with an offset of 250 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -168,10 +166,10 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
+	//requesting list of 50 products from shopstyle with an offset of 300 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -182,10 +180,10 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
+	//requesting list of 50 products from shopstyle with an offset of 350 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -196,10 +194,10 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
+	//requesting list of 50 products from shopstyle with an offset of 400 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -210,10 +208,10 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 
+	//requesting list of 50 products from shopstyle with an offset of 540 to request the next 50 products
 	$.ajax({
 		url: 'http://api.shopstyle.com/api/v2/products',
 		method: 'GET',
@@ -224,7 +222,6 @@ styleApp.getStylePieces = function() {
 			limit: 50
 		}
 	}).then(function(res){
-		// console.log(res);
 		styleApp.filterClothesPieces(res);
 	});
 };
@@ -248,117 +245,125 @@ styleApp.filterClothesPieces = function(styleData){
 	        var filteredCategoryNum = warmCategory.indexOf(productCategory);
 
 	        if (filteredCategoryNum > -1 && tempResults > 10) {
-	            // then display on page 
-	            // styleApp.displayWarmClothesPieces(product);
 	            var img = product.image.sizes.Large.url;
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-	            // const container = $('<div class="element-item">').append(imgEl, nameEl);
 	            let container= '';
-	            let classNames = '';
+	            let warmClassNames = '';
+		     
+		        
+		        //filter products in #clothes div based on tops, bottoms, dress, coats
+		        const topsFilter = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "shortsleeve-tops","longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops","tunic-tops", "halter-tops", "cashmere-tops", "tees-and-tshirts", "camisole-tops", "button-front-tops","longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters"]
 
-		    
-	            console.log('id', product.categories[0].id);
+		        const bottomsFilter = ["skinny-jeans","casual-pants", "stretch-jeans", "leggings", "distressed-jeans", "bootcut-jeans", "cropped-pants", "cropped-jeans", "shorts", "straight-leg-jeans", "relaxed-jeans", "flared-jeans", "classic-jeans", "dress-pants", "mid-length-skirts"]
+
+		       	const dressesFilter = ["day-dresses", "evening-dresses", "dresses"]
+
+		       	const coatsFilter = ["coats", "casual-jackets", "denim-jackets", "fur-and-shearling-coats", "leather-andsuede-coats", "raincoats-and-trenchcoats"]
 
 
-	            // use indexof and the array to see if it matches
+		       //if product has a category ID related to tops, add class of .tops
+		        var filteredTopsNum = topsFilter.indexOf(productCategory);
+		        if (filteredTopsNum > -1) {
+		        	warmClassNames += 'tops';
+		        	// this is the shorthand way of saying classNames = classNames + 'top';
+		        }
 
+		        //if product has a category ID related to bottoms, add class of .bottoms
+		        var filteredBottomsNum = bottomsFilter.indexOf(productCategory);
+		        if (filteredBottomsNum > -1) {
+		        	warmClassNames += 'bottoms';
+		        	// this is the shorthand way of saying classNames = classNames + 'bottoms';
+		        }
+
+		        //if product has a category ID related to dresses, add class of dresses
+		        var filteredDressesNum = dressesFilter.indexOf(productCategory);
+		        if (filteredDressesNum > -1) {
+		        	warmClassNames += 'dresses';
+		        	// this is the shorthand way of saying classNames = classNames + 'dresses';
+		        }
+
+		        //if product has a category ID related to coats, add class of coats
+		        var filteredCoatsNum = coatsFilter.indexOf(productCategory);
+		        if (filteredCoatsNum > -1) {
+		        	warmClassNames += 'coats';
+		        	// this is the shorthand way of saying classNames = classNames + 'coats';
+		        }
 
 		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
-		        if (product.categories[0].id === "tops" || 
-		        	product.categories[0].id === "dresses" || 
-		        	product.categories[0].id === "jackets" || 
-		        	product.categories[0].id === "coats" ||
-		        	product.categories[0].id === "trenchcoats" ||
-		        	product.categories[0].id === "tshirts" ||
-		        	product.categories[0].id === "sweaters" ||
-		        	product.categories[0].id === "sweatshirts") {
-
-		        	 classNames += 'top';
-		        	// classNames = classNames + 'top';
-
-		        } 
-
-		         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
-		        if (product.categories[0].id === "jeans" || 
-		        	product.categories[0].id === "pants" || 
-		        	product.categories[0].id === "skirts" || 
-		        	product.categories[0].id === "leggings") {
-		   				classNames += 'bottom';
-		        	 
-		        } 
-
-		        console.log('classNames', classNames)
-		    	container = $('<div class="element-item '+ classNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
+		        console.log('classNames', warmClassNames)
+		    	container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
 	             
-	            console.log("temp is above 10!");
-	            console.log('container', container);
-	            // container.append(imgEl, nameEl);
+
 	            $('#clothes').append(container);
-	        }
+	        }//closes temperature filter if statement
+	    }); //closes styleData.products.forEach for warm clothes
 
-	    });
-
-
-	// if temperature is below 10C display ColdClothesPieces.
+		// if temperature is below 10C display ColdClothesPieces.
 	    styleData.products.forEach(function(product){
 	        var productCategory = product.categories[0].id;
 	        var filteredCategoryNum = coldCategory.indexOf(productCategory);
 
 	        if (filteredCategoryNum > -1 && tempResults < 10) {
-	            // then display on page 
-	            // styleApp.displayColdClothesPieces(product);
+
 	            var img = product.image.sizes.Large.url;
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-	             // const container = $('<div class="element-item">').append(imgEl, nameEl);
+
 	            let container= '';
-	            let classNames = '';
+	            let coldClassNames = '';
 
-		    
-	            console.log('id', product.categories[0].id);
-
-
-	            // use indexof and the array to see if it matches
-
-
-		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
-		        if (product.categories[0].id === "tops" || 
-		        	product.categories[0].id === "dresses" || 
-		        	product.categories[0].id === "jackets" || 
-		        	product.categories[0].id === "coats" ||
-		        	product.categories[0].id === "trenchcoats" ||
-		        	product.categories[0].id === "tshirts" ||
-		        	product.categories[0].id === "sweaters" ||
-		        	product.categories[0].id === "sweatshirts") {
-
-		        	 classNames += 'top';
-		        	// classNames = classNames + 'top';
-
-		        } 
-
-		         //if the categories[0].id include the strings stated below, add a class of bottom to div.element-item.
-		        if (product.categories[0].id === "jeans" || 
-		        	product.categories[0].id === "pants" || 
-		        	product.categories[0].id === "skirts" || 
-		        	product.categories[0].id === "leggings") {
-		   				classNames += 'bottom';
-		        	 
-		        } 
-
-		        console.log('classNames', classNames)
-		    	container = $('<div class="element-item '+ classNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
 	             
-	            console.log("temp is above 10!");
-	            console.log('container', container);
-	            // container.append(imgEl, nameEl);
+	            //filter products in #clothes div based on tops, bottoms, dress, coats
+	            const topsFilter = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "shortsleeve-tops","longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops","tunic-tops", "halter-tops", "cashmere-tops", "tees-and-tshirts", "camisole-tops", "button-front-tops","longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters"]
+
+	            const bottomsFilter = ["skinny-jeans","casual-pants", "stretch-jeans", "leggings", "distressed-jeans", "bootcut-jeans", "cropped-pants", "cropped-jeans", "shorts", "straight-leg-jeans", "relaxed-jeans", "flared-jeans", "classic-jeans", "dress-pants", "mid-length-skirts"]
+
+	            const dressesFilter = ["day-dresses", "evening-dresses", "dresses"]
+
+	            const coatsFilter = ["coats", "casual-jackets", "denim-jackets", "fur-and-shearling-coats", "leather-andsuede-coats", "raincoats-and-trenchcoats"]
+
+
+	            //if product has a category ID related to tops, add class of .tops
+	             var filteredTopsNum = topsFilter.indexOf(productCategory);
+	             if (filteredTopsNum > -1) {
+	             	coldClassNames += 'tops';
+	             	// this is the shorthand way of saying classNames = classNames + 'top';
+	             }
+
+	             //if product has a category ID related to bottoms, add class of .bottoms
+	             var filteredBottomsNum = bottomsFilter.indexOf(productCategory);
+	             if (filteredBottomsNum > -1) {
+	             	coldClassNames += 'bottoms';
+	             	// this is the shorthand way of saying classNames = classNames + 'bottoms';
+	             }
+
+	             //if product has a category ID related to dresses, add class of dresses
+	             var filteredDressesNum = dressesFilter.indexOf(productCategory);
+	             if (filteredDressesNum > -1) {
+	             	coldClassNames += 'dresses';
+	             	// this is the shorthand way of saying classNames = classNames + 'dresses';
+	             }
+
+	             //if product has a category ID related to coats, add class of coats
+	             var filteredCoatsNum = coatsFilter.indexOf(productCategory);
+	             if (filteredCoatsNum > -1) {
+	             	coldClassNames += 'coats';
+	             	// this is the shorthand way of saying classNames = classNames + 'coats';
+	             }		    
+		    } //closes if statement that filters by temperature
+
+		    	console.log('coldClassNames', coldClassNames)
+		    	container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
+	             
 	            $('#clothes').append(container);
-	        }
-	    });
-	}
-}
+	    }); //closes styleData.products.forEach for cold clothing
+
+
+	} //closes styleApp.displayClothesByTemp
+}//closes filterClothesPieces function
 
 //smooth scroll so results display on screen in a more obvious manner
 $(".submitButton").on('click', function() {
@@ -367,17 +372,22 @@ $(".submitButton").on('click', function() {
         'slow');
 });
 
+
 //reload button that will reload the page
-/*function reloadButton(){
+function reloadButton(){
 	$('#reloadButton').on('click', function(){
 		console.log(reloadButton);
 		location.reload();
 	});
-};*/
+};
 
 //must add reload button to this function:
 $(function(){
 	styleApp.init();
 });
 
- 
+
+
+//got cold and warm functions working
+//got images printing to page
+//issue is both cold and warm are printing at once - maybe review if else statement
