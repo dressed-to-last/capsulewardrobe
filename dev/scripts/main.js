@@ -229,6 +229,7 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
+	            const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
 	            let container= '';
 	            let warmClassNames = '';
 		     
@@ -273,7 +274,7 @@ styleApp.filterClothesPieces = function(styleData){
 
 		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
 		        // console.log('classNames', warmClassNames)
-		    	container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
+		    	container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
 	             
 
 	            $('#clothes').append(container);
@@ -292,7 +293,7 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-
+	            const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
 	            let container= '';
 	            let coldClassNames = '';
 
@@ -337,7 +338,7 @@ styleApp.filterClothesPieces = function(styleData){
 		    } //closes if statement that filters by temperature
 
 		    	// console.log('coldClassNames', coldClassNames)
-		    	container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
+		    	container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
 	             
 	            $('#clothes').append(container);
 
@@ -358,6 +359,7 @@ styleApp.countProducts = function(){
 
 	$(".element-item").click(function(){
 		$("#userCounterClicks").empty();
+		// $(".element-item").addClass("favorite");
 		counterNum = counterNum - 1;
 
 		const counter = $("<span>").text(counterNum);
