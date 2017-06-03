@@ -2,42 +2,40 @@
 // font-family: 'Montserrat', sans-serif;
 // font-family: 'Roboto', sans-serif;
 
+$primaryColour: #13555A;
+$secondaryColour: #98903F;
+$tertiaryColour: #E5E2CC;
 @import 'setup';
 
 
-//general styles 
-.wrapper {
-	max-width: 1000px;
-	margin: 0 auto;
-}
-
-.wrapper2 {
-	max-width: 1200px;
-	margin: 0 auto;
-	background-color: white;
-}
-
+//GENERAL STYLE 
 body {
 	margin: 0 auto;
 	font-family: 'Montserrat', sans-serif;
-	background-color: #13555A;
+	font-size: 10px;
 }
 
-//header styles
-
-header {
-	margin-bottom: 100px;
-	height: 100vh;
-	background-image: url('../../assets/header.png');
+.wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+.element-item { 
+	width: 20%; 
+	height: 25%;
+	display: inline-block;
+	padding: 20px;
+	h4 {
+		text-align: center;
+	}
 }
 
-
-.takeMeToMyClosetButton {
-	text-align: center;
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.myClosetButton {
+	padding: 20px;
+	// text-align: center;
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	// transform: translate(-50%, -50%);
 }
 
 .submitButton {
@@ -46,75 +44,29 @@ header {
 }
 
 nav {
-	position: fixed;
+	// position: fixed;
 	width: 100%;
+	background: white;
+	.logo {
+		width: 30px;
+	}
+	#weather {
+		float: left;
+	}
+	
+}
+
+ 
+.nav {
 	li {
-		list-style-type: none;
-		padding-left: 30px;
+		list-style: none;
+		float: left;
 	}
 	.fa {
-		color: red;
+		// color: red;
 	}
 }
 
-.nav1 {
-	background-color: #E5E2CC;
-	padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 25px;
-    margin-top: 0;
-    padding-bottom: 35px;
-    li {
-    	float: left;
-    }
-}
 
-.nav2 {
-	float: right;
-	background-color: #E5E2CC;
-	padding-top: 10px;
-	ul {
-		margin-right: 20px;
-	}
-	li {
-		padding: 0;
-    	padding-right: 16px;
-	}
-}
-
-#weather {
-	li {
-	letter-spacing: 1px;
-	float: right;
-	}
-	p {
-		text-align: center;
-		float: left;
-	}
-	img {
-		float: left;
-		transform: translate(-10%, -5%);
-	}
-}
-
-.weatherNav li {
-	float: right;
-}
 
 //header styles ends
-
-
-//clothes library styles
-
-#clothes {
-	margin-top: 200px;
-	.element-item {
-		float: left;
-		width: 25%;
-		max-width: 100%;
-	}
-	p {
-		font-size: 16px;
-		text-align: center;
-	}
-}
