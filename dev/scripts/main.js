@@ -365,7 +365,7 @@ styleApp.filterClothesPieces = function(styleData){
 }//closes filterClothesPieces function
 
 //smooth scroll so results display on screen in a more obvious manner
-$(".submitButton").on('click', function() {
+$(".myClosetButton").on('click', function() {
     $('html,body').animate({
         scrollTop: $("#clothes").offset().top},
         'slow');
