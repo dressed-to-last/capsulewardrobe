@@ -67,14 +67,13 @@ styleApp.getWeatherPieces = function() {
 //after getting data from getWeatherPieces, display elements needed on the page.
 styleApp.displayWeatherPieces = function(weather) {
 	var weatherData = weather.current_observation;
-	const weatherConditionEl = $("<p>").text(weatherData.icon);
 	const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
 	const cityEl = $("<p>").text(weatherData.observation_location.city);
-	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
+	const tempEl = $("<p>").text(weatherData.temp_c + " °C");
 
 	const temp = weatherData.temp_c;
 
-	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
+	$("#weather").append(weatherImgEl, tempEl, cityEl);
 
 	styleApp.displayClothesByTemp(temp);
 
