@@ -7,8 +7,9 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
-	// styleApp.reloadButton();
+	styleApp.reloadButton();
 	styleApp.countProducts();
+	
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -23,6 +24,25 @@ styleApp.init = function(){
 
 
 
+
+
+//count number of products user has left
+styleApp.countProducts = function(){
+	var counter = 10;
+
+	$(".counterButton").click(function(){
+
+		$("#userCounterClicks").empty();
+		counter = counter - 1;
+		const counterNum = $("<p>").text(counter);
+		$("#userCounterClicks").append(counterNum);
+
+		if (counter <= 0) {
+			counter = 1;
+			console.log("no more products left!");
+		}
+	})
+}
 
 
 
@@ -186,7 +206,6 @@ styleApp.getStylePieces = function() {
 			offset: 400, 
 			limit: 50
 		}
-
 	}).then(function(res){
 		styleApp.filterClothesPieces(res);
 	});
@@ -272,7 +291,6 @@ styleApp.filterClothesPieces = function(styleData){
 		        }
 
 		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
-		        // console.log('classNames', warmClassNames)
 		    	container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
 	             
 
@@ -292,7 +310,6 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-
 	            let container= '';
 	            let coldClassNames = '';
 
@@ -345,39 +362,12 @@ styleApp.filterClothesPieces = function(styleData){
 		styleApp.isotopeFeatures();
 
 	} //closes styleApp.displayClothesByTemp
-	styleApp.countProducts();
 }//closes filterClothesPieces function
-
-
-
-
-
-//count number of products user has left
-styleApp.countProducts = function(){
-	var counterNum = 30;
-
-	$(".element-item").click(function(){
-		$("#userCounterClicks").empty();
-		counterNum = counterNum - 1;
-
-		const counter = $("<span>").text(counterNum);
-		$("#userCounterClicks").append(counter);
-
-		if (counterNum <= 0) {
-			counterNum = 1;
-			console.log("no more products left!");
-		}
-	})
-}
-
-
-
-
 
 //smooth scroll so results display on screen in a more obvious manner
 $(".myClosetButton").on('click', function() {
     $('html,body').animate({
-        scrollTop: $(".filterNav").offset().top},
+        scrollTop: $(".explainCapsule").offset().top},
         'slow');
 });
 
@@ -391,14 +381,13 @@ styleApp.reloadButton = function(){
 };
 
 
-
 styleApp.isotopeFeatures = function(){
-	var $grid = $('.grid').isotope({
+	var $grid = $('<div class="gr"></div>id').isotope({
 	    layoutMode: 'masonry'
 	});
 
 	$('.filter-button-group').on('click', 'button', function() {
-      var filterValue = $(this).attr('data-filter');
+      var filterValue = $(this).data('filter');
       $grid.isotope({ filter: filterValue });
       console.log("you clicked a filter button!");
       $grid.isotope({ filter: '.tops'});
@@ -408,8 +397,6 @@ styleApp.isotopeFeatures = function(){
       console.log("it's been clicked!");
     });
 }
-
-
 
 
 
