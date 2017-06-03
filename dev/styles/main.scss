@@ -17,6 +17,13 @@ body {
 	margin: 0 auto;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 10px;
+	text-align: center;
+	background: white;
+}
+
+h1 {
+	font-size: 5rem;
+	padding-top: 300px;
 }
 
 
@@ -25,13 +32,15 @@ body {
 
 //HEADER STYLE HEADER STYLE HEADER STYLE
 header {
-	// width: 100vw;
-	// background-image: url('../../assets/header.png');
+	width: 100vw;
+	background: url('../../assets/header.jpg') no-repeat center;
+	background-position: cover;
 }
 
 
 .myClosetButton {
 	padding: 20px;
+	margin-bottom: 100px;
 	// text-align: center;
 	// position: absolute;
 	// top: 50%;
@@ -40,26 +49,48 @@ header {
 }
 
 nav {
-	// position: fixed;
+	position: fixed;
+	top: 0;
 	width: 100%;
 	background: white;
+	padding: 50px;
 	.logo {
-		width: 30px;
+		width: 100px;
+		position: absolute;
+		top: 15px;
+		left: 15px;
 	}
 	#weather {
-		float: left;
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		& > * {
+			float: right;
+		}
 	}
-	
 }
 
+
 .nav {
+	padding: 0;
+	margin: 0;
 	li {
 		list-style: none;
-		float: left;
+		display: inline;
+		a {
+			text-decoration: none;
+			font-size: 1rem;
+			padding: 5px;
+		}
 	}
-	.fa {
+	.fa-heart {
 		// color: red;
+		font-size: 3rem;
 	}
 }
+
+
+
+
 
 //HEADER STYLE ENDS HEADER STYLE ENDS
