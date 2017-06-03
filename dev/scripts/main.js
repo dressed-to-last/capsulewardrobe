@@ -7,8 +7,8 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
-	styleApp.reloadButton();
 	styleApp.countProducts();
+	//styleApp.reloadButton();
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -20,7 +20,7 @@ styleApp.init = function(){
 //user selects products from library and product is stored in their personal capsule wardrobe.
 //when user clicks the filter button (eg. all, top, bottom, jackets, selected products) display the library according to the clicked button.
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
-
+	
 
 
 
@@ -68,14 +68,14 @@ styleApp.getWeatherPieces = function() {
 //after getting data from getWeatherPieces, display elements needed on the page.
 styleApp.displayWeatherPieces = function(weather) {
 	var weatherData = weather.current_observation;
-	const weatherConditionEl = $("<p>").text(weatherData.icon);
+	//const weatherConditionEl = $("<p>").text(weatherData.icon);
 	const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
 	const cityEl = $("<p>").text(weatherData.observation_location.city);
 	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
 
 	const temp = weatherData.temp_c;
 
-	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
+	$("#weather").append(weatherImgEl, tempEl, cityEl);
 
 	styleApp.displayClothesByTemp(temp);
 
@@ -367,14 +367,13 @@ $(".submitButton").on('click', function() {
         'slow');
 });
 
-
 //reload button that will reload the page
-function reloadButton(){
+/*function reloadButton(){
 	$('#reloadButton').on('click', function(){
 		console.log(reloadButton);
 		location.reload();
 	});
-};
+};*/
 
 //must add reload button to this function:
 $(function(){

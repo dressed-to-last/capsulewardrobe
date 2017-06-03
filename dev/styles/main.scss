@@ -11,9 +11,16 @@
 	margin: 0 auto;
 }
 
+.wrapper2 {
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: white;
+}
+
 body {
 	margin: 0 auto;
 	font-family: 'Montserrat', sans-serif;
+	background-color: #13555A;
 }
 
 //header styles
@@ -24,10 +31,6 @@ header {
 	background-image: url('../../assets/header.png');
 }
 
-h1 {
-	font-size: 150px;
-	color: red;
-}
 
 .takeMeToMyClosetButton {
 	text-align: center;
@@ -35,6 +38,11 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.submitButton {
+	padding: 20px;
+	font-size: 18px;
 }
 
 nav {
@@ -54,22 +62,59 @@ nav {
 	padding-top: 10px;
     padding-bottom: 10px;
     line-height: 25px;
+    margin-top: 0;
+    padding-bottom: 35px;
+    li {
+    	float: left;
+    }
 }
 
 .nav2 {
 	float: right;
 	background-color: #E5E2CC;
 	padding-top: 10px;
+	ul {
+		margin-right: 20px;
+	}
 	li {
 		padding: 0;
     	padding-right: 16px;
 	}
 }
 
-#weather li {
-	float: right;
+#weather {
+	li {
 	letter-spacing: 1px;
+	float: right;
+	}
+	p {
+		text-align: center;
+		float: left;
+	}
+	img {
+		float: left;
+		transform: translate(-10%, -5%);
+	}
 }
 
+.weatherNav li {
+	float: right;
+}
 
 //header styles ends
+
+
+//clothes library styles
+
+#clothes {
+	margin-top: 200px;
+	.element-item {
+		float: left;
+		width: 25%;
+		max-width: 100%;
+	}
+	p {
+		font-size: 16px;
+		text-align: center;
+	}
+}
