@@ -7,7 +7,6 @@ styleApp.init = function() {
   styleApp.getWeatherPieces();
   styleApp.getStylePieces();
   styleApp.reloadButton();
-  styleApp.countProducts();
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -481,8 +480,8 @@ styleApp.filterClothesPieces = function(styleData) {
       } //closes if statement that filters by temperature
     }); //closes styleData.products.forEach for cold clothing
     styleApp.isotopeFeatures();
+    styleApp.countProducts();
   }; //closes styleApp.displayClothesByTemp
-  styleApp.countProducts();
 }; //closes filterClothesPieces function
 
 //count number of products user has left
@@ -491,7 +490,6 @@ styleApp.countProducts = function() {
 
   $(".element-item").click(function() {
     $("#userCounterClicks").empty();
-    // $(".element-item").addClass("favorite");
     counterNum = counterNum - 1;
 
     const counter = $("<span>").text(counterNum);
@@ -508,7 +506,7 @@ styleApp.countProducts = function() {
 $(".myClosetButton").on("click", function() {
   $("html,body").animate(
     {
-      scrollTop: $(".filterNav").offset().top
+      scrollTop: $("#filterNav").offset().top
     },
     "slow"
   );
@@ -522,28 +520,20 @@ styleApp.reloadButton = function() {
   });
 };
 
-styleApp.isotopeFeatures = function() {
-  var $grid = $(".grid").isotope({
-    layoutMode: "masonry",
-    itemSelector: '.grid-sizer'
-  });
 
-  $(".filter-button-group").on("click", "button", function() {
-    var filterValue = $(this).attr("data-filter");
-    $grid.isotope({ filter: filterValue });
-    console.log("you clicked a filter button!");
-    $grid.isotope({ filter: ".tops" });
-    $grid.isotope({ filter: ".bottoms" });
-    $grid.isotope({ filter: ".dresses" });
-    $grid.isotope({ filter: "*" });
-    console.log("it's been clicked!");
-  });
-};
+styleApp.isotopeFeatures = function(){
+    var $grid = $('#clothes').isotope({
+
+    });
+    // filter items on button click
+    $('.buttonFilter').on( 'click', function() {
+      var filterValue = $(this).attr('data-filter');
+      $grid.isotope({ filter: filterValue });
+
+      // console.log(filterValue);
+    });
+}
 
 $(function() {
   styleApp.init();
 });
-
-//got cold and warm functions working
-//got images printing to page
-//issue is both cold and warm are printing at once - maybe review if else statement
