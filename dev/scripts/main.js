@@ -7,7 +7,7 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
-	// styleApp.reloadButton();
+	styleApp.reloadButton();
 	styleApp.countProducts();
 
 };
@@ -230,9 +230,11 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
+
 	            const heart = $('<i class="fa fa-heart-o" aria-hidden="true"></i>');
 	            let container= '';
 	            let warmClassNames = '';
+	            container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
 		     
 		        
 		        //filter products in #clothes div based on tops, bottoms, dress, coats
@@ -294,10 +296,10 @@ styleApp.filterClothesPieces = function(styleData){
 	            var name = product.name;
 	            const imgEl = $('<img>').attr('src', img);
 	            const nameEl = $('<h4>').text(name);
-
+	            const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
 	            let container= '';
 	            let coldClassNames = '';
-
+	            container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
 	             
 	            //filter products in #clothes div based on tops, bottoms, dress, coats
 	            const topsFilter = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "shortsleeve-tops","longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops","tunic-tops", "halter-tops", "cashmere-tops", "tees-and-tshirts", "camisole-tops", "button-front-tops","longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters"]
@@ -337,7 +339,7 @@ styleApp.filterClothesPieces = function(styleData){
 	             	// this is the shorthand way of saying classNames = classNames + 'coats';
 	             }		    
 		    	// console.log('coldClassNames', coldClassNames)
-		    	container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
+		    	
 	             
 	            $('#clothes').append(container);
 		    } //closes if statement that filters by temperature
@@ -357,6 +359,7 @@ styleApp.countProducts = function(){
 
 	$(".element-item").click(function(){
 		$("#userCounterClicks").empty();
+		// $(".element-item").addClass("favorite");
 		counterNum = counterNum - 1;
 
 		const counter = $("<span>").text(counterNum);
@@ -425,6 +428,19 @@ styleApp.isotopeFeatures = function() {
   });
 };
 
+
+
+// 	$('button').on('click', function() {
+//       var filterValue = $(this).attr('data-filter');
+//       $grid.isotope({ filter: filterValue });
+//       console.log("you clicked a filter button!");
+//       $grid.isotope({ filter: '.tops'});
+//       $grid.isotope({ filter: '.bottoms'});
+//       $grid.isotope({ filter: '.dresses'});
+//       $grid.isotope({ filter: '*'});
+//       console.log("it's been clicked!");
+//     });
+// }
 
 
 
