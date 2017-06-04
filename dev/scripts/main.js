@@ -9,6 +9,7 @@ styleApp.init = function(){
 	styleApp.getStylePieces();
 	// styleApp.reloadButton();
 	styleApp.countProducts();
+
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -22,27 +23,6 @@ styleApp.init = function(){
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
 
 
-
-
-
-
-//count number of products user has left
-styleApp.countProducts = function(){
-	var counter = 30;
-
-	$(".counterButton").click(function(){
-
-		$("#userCounterClicks").empty();
-		counter = counter - 1;
-		const counterNum = $("<p>").text(counter);
-		$("#userCounterClicks").append(counterNum);
-
-		if (counter <= 0) {
-			counter = 1;
-			console.log("no more products left!");
-		}
-	})
-}
 
 
 
@@ -67,19 +47,16 @@ styleApp.getWeatherPieces = function() {
 //after getting data from getWeatherPieces, display elements needed on the page.
 styleApp.displayWeatherPieces = function(weather) {
 	var weatherData = weather.current_observation;
-	const weatherConditionEl = $("<p>").text(weatherData.icon);
 	const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
 	const cityEl = $("<p>").text(weatherData.observation_location.city);
-	const tempEl = $("<p>").text(weatherData.temp_c + "°C");
-
+	const tempEl = $("<p>").text(weatherData.temp_c + " °C");
 	const temp = weatherData.temp_c;
 
-	$("#weather").append(weatherImgEl, weatherConditionEl, tempEl, cityEl);
+	$("#weather").append(weatherImgEl, tempEl, cityEl);
 
 	styleApp.displayClothesByTemp(temp);
 
 };
-
 
 
 
@@ -207,6 +184,7 @@ styleApp.getStylePieces = function() {
 			offset: 400, 
 			limit: 50
 		}
+
 	}).then(function(res){
 		styleApp.filterClothesPieces(res);
 	});
@@ -223,6 +201,8 @@ styleApp.getStylePieces = function() {
 		}
 	}).then(function(res){
 		styleApp.filterClothesPieces(res);
+		// styleApp.isotopeFeatures();
+		
 	});
 };
 
@@ -231,6 +211,7 @@ styleApp.getStylePieces = function() {
 
 
 styleApp.filterClothesPieces = function(styleData){
+
 
 	const warmCategory = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "casual-pants", "shortsleeve-tops", "cropped-jeans", "relaxed-jeans", "skinny-jeans", "cropped-pants", "dress-pants", "stretch-jeans", "straight-leg-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "shorts"];
 
@@ -293,11 +274,12 @@ styleApp.filterClothesPieces = function(styleData){
 		        }
 
 		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
-		        console.log('classNames', warmClassNames)
+		        // console.log('classNames', warmClassNames)
 		    	container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
-	             
 
+	        
 	            $('#clothes').append(container);
+
 	        }//closes temperature filter if statement
 	    }); //closes styleData.products.forEach for warm clothes
 
@@ -354,35 +336,101 @@ styleApp.filterClothesPieces = function(styleData){
 	             	coldClassNames += 'coats';
 	             	// this is the shorthand way of saying classNames = classNames + 'coats';
 	             }		    
-		    } //closes if statement that filters by temperature
-
-		    	console.log('coldClassNames', coldClassNames)
+		    	// console.log('coldClassNames', coldClassNames)
 		    	container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
 	             
 	            $('#clothes').append(container);
+		    } //closes if statement that filters by temperature
 	    }); //closes styleData.products.forEach for cold clothing
-
-
+	    styleApp.isotopeFeatures();
 	} //closes styleApp.displayClothesByTemp
+	styleApp.countProducts();
 }//closes filterClothesPieces function
 
+
+
+
+
+//count number of products user has left
+styleApp.countProducts = function(){
+	var counterNum = 30;
+
+	$(".element-item").click(function(){
+		$("#userCounterClicks").empty();
+		counterNum = counterNum - 1;
+
+		const counter = $("<span>").text(counterNum);
+		$("#userCounterClicks").append(counter);
+
+		// $(".fa-heart-o").toggleClass("favorite");
+
+		if (counterNum <= 0) {
+			counterNum = 1;
+			console.log("no more products left!");
+		}
+	})
+}
+
+
+
+
+
 //smooth scroll so results display on screen in a more obvious manner
-$(".submitButton").on('click', function() {
+$(".myClosetButton").on('click', function() {
     $('html,body').animate({
-        scrollTop: $("#clothes").offset().top},
+        scrollTop: $(".filterNav").offset().top},
         'slow');
 });
 
 
 //reload button that will reload the page
-function reloadButton(){
+styleApp.reloadButton = function(){
 	$('#reloadButton').on('click', function(){
-		console.log(reloadButton);
+		// console.log(reloadButton);
 		location.reload();
 	});
 };
 
-//must add reload button to this function:
+
+
+// styleApp.isotopeFeatures = function(){
+// 	var $grid = $('.grid').isotope({
+// 		itemSelector: '.element-item',
+// 	    layoutMode: 'masonry'
+
+// 	});
+
+// 	$('button').on('click', function() {
+//       var filterValue = $(this).attr('data-filter');
+//       console.log(filterValue)
+
+//       	$grid.isotope({ filter: filterValue });
+//     });
+// }
+
+styleApp.isotopeFeatures = function() {
+  var $grid = $(".grid").isotope({
+    layoutMode: "masonry"
+  });
+
+  $(".filter-button-group").on("click", "button", function() {
+    var filterValue = $(this).attr("data-filter");
+    $grid.isotope({ filter: filterValue });
+    console.log("you clicked a filter button!");
+    $grid.isotope({ filter: ".tops" });
+    $grid.isotope({ filter: ".bottoms" });
+    $grid.isotope({ filter: ".dresses" });
+    $grid.isotope({ filter: "*" });
+    console.log("it's been clicked!");
+  });
+};
+
+
+
+
+
+
+
 $(function(){
 	styleApp.init();
 });
@@ -392,4 +440,3 @@ $(function(){
 //got cold and warm functions working
 //got images printing to page
 //issue is both cold and warm are printing at once - maybe review if else statement
-
