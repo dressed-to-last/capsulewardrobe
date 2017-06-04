@@ -522,23 +522,22 @@ styleApp.reloadButton = function() {
   });
 };
 
-styleApp.isotopeFeatures = function() {
-  var $grid = $(".grid").isotope({
-    layoutMode: "masonry",
-    itemSelector: '.grid-sizer'
-  });
 
-  $(".filter-button-group").on("click", "button", function() {
-    var filterValue = $(this).attr("data-filter");
-    $grid.isotope({ filter: filterValue });
-    console.log("you clicked a filter button!");
-    $grid.isotope({ filter: ".tops" });
-    $grid.isotope({ filter: ".bottoms" });
-    $grid.isotope({ filter: ".dresses" });
-    $grid.isotope({ filter: "*" });
-    console.log("it's been clicked!");
-  });
-};
+
+styleApp.isotopeFeatures = function(){
+
+    // init Isotope
+    var $grid = $('#clothes').isotope({
+
+    });
+    // filter items on button click
+    $('.buttonFilter').on( 'click', function() {
+      var filterValue = $(this).attr('data-filter');
+      $grid.isotope({ filter: filterValue });
+
+      console.log(filterValue)
+    });
+}
 
 $(function() {
   styleApp.init();
