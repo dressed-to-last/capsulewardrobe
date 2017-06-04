@@ -8,7 +8,8 @@ styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
 	// styleApp.reloadButton();
-	styleApp.countProducts();
+	// styleApp.countProducts(); //this is being called somewhere else
+
 
 };
 
@@ -54,9 +55,9 @@ styleApp.displayWeatherPieces = function(weather) {
 
 	$("#weather").append(weatherImgEl, tempEl, cityEl);
 
+	// styleApp.getStylePieces();
 	styleApp.displayClothesByTemp(temp);
-
-};
+}
 
 
 
@@ -184,7 +185,6 @@ styleApp.getStylePieces = function() {
 			offset: 400, 
 			limit: 50
 		}
-
 	}).then(function(res){
 		styleApp.filterClothesPieces(res);
 	});
@@ -201,8 +201,6 @@ styleApp.getStylePieces = function() {
 		}
 	}).then(function(res){
 		styleApp.filterClothesPieces(res);
-		styleApp.isotopeFeatures();
-		
 	});
 };
 
@@ -211,7 +209,6 @@ styleApp.getStylePieces = function() {
 
 
 styleApp.filterClothesPieces = function(styleData){
-
 
 	const warmCategory = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "casual-pants", "shortsleeve-tops", "cropped-jeans", "relaxed-jeans", "skinny-jeans", "cropped-pants", "dress-pants", "stretch-jeans", "straight-leg-jeans", "day-dresses", "evening-dresses", "dresses", "casual-jackets", "denim-jackets", "leggings", "distressed-jeans", "classic-jeans", "longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops", "mini-skirts", "mid-length-skirts", "shorts"];
 
@@ -313,38 +310,37 @@ styleApp.filterClothesPieces = function(styleData){
 	             var filteredTopsNum = topsFilter.indexOf(productCategory);
 	             if (filteredTopsNum > -1) {
 	             	coldClassNames += 'tops';
-	             	// this is the shorthand way of saying classNames = classNames + 'top';
 	             }
 
 	             //if product has a category ID related to bottoms, add class of .bottoms
 	             var filteredBottomsNum = bottomsFilter.indexOf(productCategory);
 	             if (filteredBottomsNum > -1) {
 	             	coldClassNames += 'bottoms';
-	             	// this is the shorthand way of saying classNames = classNames + 'bottoms';
 	             }
 
 	             //if product has a category ID related to dresses, add class of dresses
 	             var filteredDressesNum = dressesFilter.indexOf(productCategory);
 	             if (filteredDressesNum > -1) {
 	             	coldClassNames += 'dresses';
-	             	// this is the shorthand way of saying classNames = classNames + 'dresses';
 	             }
 
 	             //if product has a category ID related to coats, add class of coats
 	             var filteredCoatsNum = coatsFilter.indexOf(productCategory);
 	             if (filteredCoatsNum > -1) {
 	             	coldClassNames += 'coats';
-	             	// this is the shorthand way of saying classNames = classNames + 'coats';
 	             }		    
 		    	// console.log('coldClassNames', coldClassNames)
 		    	container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl);
 	             
 	            $('#clothes').append(container);
+
 		    } //closes if statement that filters by temperature
 	    }); //closes styleData.products.forEach for cold clothing
+	    styleApp.isotopeFeatures();
 	} //closes styleApp.displayClothesByTemp
 	styleApp.countProducts();
 }//closes filterClothesPieces function
+
 
 
 
@@ -361,7 +357,9 @@ styleApp.countProducts = function(){
 		const counter = $("<span>").text(counterNum);
 		$("#userCounterClicks").append(counter);
 
-		// $(".fa-heart-o").toggleClass("favorite");
+		// console.log('you clicked something');
+		// $(this).toggleClass(isClicked);
+
 
 		if (counterNum <= 0) {
 			counterNum = 1;
@@ -373,14 +371,12 @@ styleApp.countProducts = function(){
 
 
 
-
 //smooth scroll so results display on screen in a more obvious manner
 $(".myClosetButton").on('click', function() {
     $('html,body').animate({
         scrollTop: $(".filterNav").offset().top},
         'slow');
 });
-
 
 //reload button that will reload the page
 styleApp.reloadButton = function(){
@@ -393,16 +389,13 @@ styleApp.reloadButton = function(){
 
 
 styleApp.isotopeFeatures = function(){
-
     // init Isotope
-    var $grid = $('.grid').isotope({
-    	itemSelector: '.element-item',
-
+    var $grid = $('#clothes').isotope({
     });
+
     // filter items on button click
     $('.buttonFilter').on( 'click', function() {
       var filterValue = $(this).attr('data-filter');
-
       $grid.isotope({ filter: filterValue });
 
       console.log(filterValue)
@@ -423,6 +416,19 @@ $(function(){
 
 
 
-//got cold and warm functions working
-//got images printing to page
-//issue is both cold and warm are printing at once - maybe review if else statement
+
+
+// Changes made by Shannon to get Isotope working:
+
+
+// Index.html:
+// - added a '.' in front of the data-filter on buttons in the filterNav so that when they get filtered by isotope they're filtered as class names.
+// - gave those buttons a class of "buttonFilter"
+// - deleted masonry script because we're not using it (currently)
+// - moved jquery script above isotope script
+
+
+
+// Main.js
+// - called "styleApp.isotopeFeatures();" function on line 347, before "styleApp.displayClothesByTemp" closes. 
+// - lines 399 to 411 are the working isotope js. This should be okay to directly copy and paste your current existing isotope function

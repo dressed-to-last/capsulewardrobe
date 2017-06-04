@@ -22,7 +22,6 @@
 			<ul class="innerNav clearfix">
 				<li><a href="#home">Home</a></li>
 				<li><a href="#home">My Closet</a></li>
-				<li><a href="#home">Blog</a></li>
 				<li><i class="fa fa-heart" aria-hidden="true"></i></li>
 				<li id="userCounterClicks">30</li>
 			</ul>
@@ -40,7 +39,7 @@
 
 
 
-	<main class="wrapper">
+	<main class="wrapper clearfix">
 		<div class="about">
 	        <h2>What is a wardrobe capsule, and how do I make one?</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quo aut, sit culpa! Placeat dolorem obcaecati aspernatur doloremque distinctio, omnis iste facilis laboriosam, impedit quasi a commodi. Iste facere sapiente dolore, culpa iure earum voluptatem ipsa quos. Tempore sequi eum nobis explicabo officiis voluptates doloribus natus, voluptas praesentium tenetur. Totam!
@@ -53,15 +52,13 @@
 	<!-- Nav buttons to filter returned products-->
 		<div class="filterNav button-group filter-button-group">
 			<button class="buttonFilter" data-filter="*">All</button>
-			<button class="buttonFilter" data-filter="tops">Tops</button>
-			<button class="buttonFilter" data-filter="bottoms">Bottoms</button>
-			<button class="buttonFilter" data-filter="dresses">Dresses</button>
-			<button class="buttonFilter" data-filter="favorites">Favorites</button>
+			<button class="buttonFilter" data-filter=".tops">Tops</button>
+			<button class="buttonFilter" data-filter=".bottoms">Bottoms</button>
+			<button class="buttonFilter" data-filter=".dresses">Dresses</button>
+			<button class="buttonFilter" data-filter=".favorites">Favorites</button>
 		</div>
-		<div id="clothes" class="grid wrapper">
-			<div class="grid-sizer">
-				
-			</div>
+		<div id="clothes" class="grid wrapper clearfix">
+
 		</div>
 
 
@@ -74,7 +71,7 @@
 
 
 	
-	<!-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> -->
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 	<script src="public/scripts/main.js"></script>

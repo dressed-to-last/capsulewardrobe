@@ -40,6 +40,7 @@ header {
 
 .grid {
 	width: 100%;
+	min-height: 100vh;
 }
 
 .grid-sizer {
@@ -48,11 +49,15 @@ header {
 
 div.element-item { 
 	width: 20%; 
-	height: 25%;
-	display: inline-block;
+	min-height: 300px;
 	padding: 20px;
+	max-width: 200px;
+	cursor: pointer;
 	h4 {
 		text-align: center;
+	}
+	img {
+		
 	}
 }
 
@@ -79,6 +84,7 @@ nav {
 	top: 0;
 	width: 100%;
 	background: white;
+	z-index: 1;
 	// padding: 50px;
 	.logo {
 		width: 40px;
@@ -125,4 +131,8 @@ nav {
 }
 .favorite {
 	color: red;
+}
+
+.selected {
+	border: 2px solid red;
 }
