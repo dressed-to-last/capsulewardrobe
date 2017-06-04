@@ -7,7 +7,7 @@ styleApp.key = 'uid9849-39423043-50';
 styleApp.init = function(){
 	styleApp.getWeatherPieces();
 	styleApp.getStylePieces();
-	// styleApp.reloadButton();
+	styleApp.reloadButton();
 	styleApp.countProducts();
 };
 
@@ -232,6 +232,7 @@ styleApp.filterClothesPieces = function(styleData){
 	            const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
 	            let container= '';
 	            let warmClassNames = '';
+	            container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
 		     
 		        
 		        //filter products in #clothes div based on tops, bottoms, dress, coats
@@ -274,7 +275,7 @@ styleApp.filterClothesPieces = function(styleData){
 
 		        //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
 		        // console.log('classNames', warmClassNames)
-		    	container = $('<div class="element-item '+ warmClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
+		    	
 	             
 
 	            $('#clothes').append(container);
@@ -296,7 +297,7 @@ styleApp.filterClothesPieces = function(styleData){
 	            const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
 	            let container= '';
 	            let coldClassNames = '';
-
+	            container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
 	             
 	            //filter products in #clothes div based on tops, bottoms, dress, coats
 	            const topsFilter = ["womens-tops", "polo-tops", "cashmere-tops", "button-front-tops", "shortsleeve-tops","longsleeve-tops", "sleeveless-tops", "tees-and-tshirts", "tank-tops", "tunic-tops","tunic-tops", "halter-tops", "cashmere-tops", "tees-and-tshirts", "camisole-tops", "button-front-tops","longsleeve-tops", "cardigan-sweaters", "sweatshirts", "turleneck-sweaters", "v-neck-sweaters", "cashmere-sweaters", "crewneck-sweaters"]
@@ -338,7 +339,7 @@ styleApp.filterClothesPieces = function(styleData){
 		    } //closes if statement that filters by temperature
 
 		    	// console.log('coldClassNames', coldClassNames)
-		    	container = $('<div class="element-item '+ coldClassNames +' " data-id='+ product.categories[0].id +'>').append(imgEl, nameEl, heart);
+		    	
 	             
 	            $('#clothes').append(container);
 
@@ -399,7 +400,7 @@ styleApp.isotopeFeatures = function(){
 	    layoutMode: 'masonry'
 	});
 
-	$('.filter-button-group').on('click', 'button', function() {
+	$('button').on('click', function() {
       var filterValue = $(this).attr('data-filter');
       $grid.isotope({ filter: filterValue });
       console.log("you clicked a filter button!");
