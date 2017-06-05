@@ -10,12 +10,12 @@ styleApp.init = function() {
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
 //when user location is activated, display weather data.
-//display clothes according to user's location temperature (above 20 degrees show summer clothes, below 20 degrees show autumn clothes).
-//when user select a product, counter of 30 decreases by 1; when user unclicked the product, the counter increases.
-
-//user selects products from library and product is stored in their personal capsule wardrobe.
+//display clothes according to user's location temperature (above 10 degrees show summer clothes, below 10 degrees show autumn clothes).
+//when user selects a product, counter of 30 decreases by 1; when user unclick the product, the counter increases.
+//user selects products from library and products will be stored in their personal capsule wardrobe.
 //when user clicks the filter button (eg. all, top, bottom, jackets, selected products) display the library according to the clicked button.
 //the flickity top section will show shirts/jackets, and bottom section shows pants/skirts, etc.
+
 
 //ajax call to get weather data
 styleApp.getWeatherPieces = function() {
@@ -28,7 +28,7 @@ styleApp.getWeatherPieces = function() {
   });
 };
 
-//end of ajax call
+
 
 //after getting data from getWeatherPieces, display elements needed on the page.
 styleApp.displayWeatherPieces = function(weather) {
@@ -36,13 +36,14 @@ styleApp.displayWeatherPieces = function(weather) {
   const weatherImgEl = $("<img>").attr("src", weatherData.icon_url);
   const cityEl = $("<p>").text(weatherData.observation_location.city);
   const tempEl = $("<p>").text(weatherData.temp_c + " °C");
-
   const temp = weatherData.temp_c;
 
   $("#weather").append(weatherImgEl, tempEl, cityEl);
 
   styleApp.displayClothesByTemp(temp);
 };
+
+
 
 styleApp.getStylePieces = function() {
   //requesting list of 50 products from shopstyle
@@ -142,9 +143,9 @@ styleApp.getStylePieces = function() {
   }).then(function(res) {
     styleApp.filterClothesPieces(res);
   });
-
-
 };
+
+
 
 styleApp.filterClothesPieces = function(styleData) {
   const warmCategory = [
@@ -215,8 +216,6 @@ styleApp.filterClothesPieces = function(styleData) {
   ];
 
   styleApp.displayClothesByTemp = function(tempResults) {
-    console.log("the current temp is ", tempResults);
-
     // if temperature is above 10C display WarmClothesPieces.
     styleData.products.forEach(function(product) {
       var productCategory = product.categories[0].id;
@@ -227,9 +226,7 @@ styleApp.filterClothesPieces = function(styleData) {
         var name = product.name;
         const imgEl = $("<img>").attr("src", img);
         const nameEl = $("<h4>").text(name);
-
         var heart = $('<i>').addClass("fa").addClass("fa-heart").addClass("favoriteHeart");
-
         let container = "";
         let warmClassNames = "";
 
@@ -289,7 +286,6 @@ styleApp.filterClothesPieces = function(styleData) {
           "raincoats-and-trenchcoats"
         ];
 
-
         //if product has a category ID related to tops, add class of .tops
         var filteredTopsNum = topsFilter.indexOf(productCategory);
         if (filteredTopsNum > -1) {
@@ -319,7 +315,6 @@ styleApp.filterClothesPieces = function(styleData) {
         }
 
         //if the categories[0].id include the strings stated below, add a class of top to div.element-item.
-        // console.log('classNames', warmClassNames)
         container = $(
           '<div class="element-item ' +
             warmClassNames +
@@ -329,55 +324,9 @@ styleApp.filterClothesPieces = function(styleData) {
         ).append(imgEl, nameEl, heart);
 
         $("#clothes").append(container);
-
-
-
-
-
-
-
-
-
-
-        // // create an empty array to store user's choice when clicked. push into the array!
-        // // when user click/ select the element-item div with appropriate id, push into the empty favorite array and display that.
-
-        // let idEl= $(".element-item").attr("id", productCategory);
-
-        // for (let i = 0; i < warmCategory.length; i = i + 1) {
-        //   styleApp.warmCategoryfavoritesFilter.push()
-        // }
-        // const favoritesFilter = [];
-
-        // var filteredSelectedNum = favoritesFilter.indexOf(productCategory);
-        // if (filteredSelectedNum > -1) {
-        //   warmClassNames += "favorites";
-        // }
-
-        // $(".element-item").on("click", function(){
-        //   $(favoritesFilter).push(product.categories[0].id);
-
-        // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       } //closes temperature filter if statement
     }); //closes styleData.products.forEach for warm clothes
+
 
     // if temperature is below 10C display ColdClothesPieces.
     styleData.products.forEach(function(product) {
@@ -493,29 +442,27 @@ styleApp.filterClothesPieces = function(styleData) {
   }; //closes styleApp.displayClothesByTemp
 }; //closes filterClothesPieces function
 
+
+
 //count number of products user has left
 styleApp.countProducts = function() {
   var counterNum = 30;
 
   $(".element-item").click(function() {
     $("#userCounterClicks").empty();
-    counterNum = counterNum - 1;
-
     $(this).toggleClass("favorite");
 
-    // $("i.fa-heart").addClass("favorite");
-
-
+    counterNum = counterNum - 1;
     const counter = $("<span>").text(counterNum);
     $("#userCounterClicks").append(counter);
 
     if (counterNum <= 0) {
       counterNum = 1;
-      console.log("no more products left!");
-
     }
   });
 };
+
+
 
 //smooth scroll
 $('a[href*="#"]:not([href="#"])').click(function() {
@@ -537,16 +484,15 @@ styleApp.isotopeFeatures = function(){
     var $grid = $('#clothes').isotope({
     	columnWidth: 5,
     	resizable: false
-
     });
     // filter items on button click
     $('.buttonFilter').on( 'click', function() {
       var filterValue = $(this).attr('data-filter');
       $grid.isotope({ filter: filterValue });
-
-      // console.log(filterValue);
     });
 }
+
+
 
 $(function() {
   styleApp.init();
