@@ -1,146 +1,160 @@
 $primaryColour: #13555A;
 $secondaryColour: #98903F;
 $tertiaryColour: #E5E2CC;
+$primaryFont: 'Montserrat', sans-serif;
+$secondaryFont: 'Roboto', sans-serif;
 @import 'setup';
 
 
-//GENERAL STYLE
+//general styles begins
 body {
-	margin: 0 auto;
-	font-family: 'Roboto', sans-serif;
-	font-weight: normal;
-	letter-spacing: 1px;
-	font-size: 10px;
-	text-align: center;
-	background: white;
+    margin: 0 auto;
+    font-family: $secondaryFont;
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-size: 10px;
+    text-align: center;
+    background: white;
+}
+
+img {
+    max-width: 100%;
 }
 
 h1, h2, h3, h4 {
-	margin: 0;
-	font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-family: $primaryFont;
 }
 
 h1 {
-	font-size: calc(45px + (90 - 45) * ((100vw - 320px) / (1440 - 320)));
-	font-weight: normal;
+    font-size: calc(45px + (90 - 45) * ((100vw - 320px) / (1440 - 320)));
+    font-weight: normal;
 }
 
 h2 {
-	font-size: 2rem;
-	color: $secondaryColour;
-	margin-bottom: 20px;
+    font-size: 2rem;
+    color: $secondaryColour;
+    margin-bottom: 20px;
 }
 
 .descriptionWrapper, .wrapper {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 .descriptionWrapper {
-	width: 700px;
+    width: 70%;
 }
 
 .wrapper {
-	width: 900px;
+    width: 900px;
+    max-width: 100%;
 }
 
 input:focus {
-	outline:none;
+    outline:none;
 }
 
 button {
-	border: 4px solid $primaryColour;
-	letter-spacing: 1px;
+    border: 4px solid $primaryColour;
+    letter-spacing: 1px;
 }
 
+// general styles ends
 
 
-
-//HEADER STYLE HEADER STYLE HEADER STYLE
+//HEADER STYLE 
 nav {
-	position: fixed;
-	z-index: 2;
-	top: 0;
-	width: 100%;
-	background: $tertiaryColour;
-	padding: 30px;
-	text-align: left;
-	font-weight: bold;
-	.logo, #weather, .counter{
-		position: absolute;
-	}
-	.logo {
-		width: 60px;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	#weather {
-		color: $secondaryColour;
-		font-size: 1rem;
-		top: 0;
-		right: 20px;
-		& > * {
-			float: right;
-			padding: 20px 8px;
-			margin: 0;
-		}
-		img {
-			width: 45px;
-			filter: grayscale(2);
-		}
-	}
-	.counter {
-		top: 60px;
-		right: 140px;
-		.fa-heart {
-			font-size: 3rem;
-		}
-		#userCounterClicks {
-			font-size: 2rem;
-			margin: 0;
-			padding-left: 5px;
-		}
-	}
-}
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+    background: $tertiaryColour;
+    padding: 30px;
+    text-align: left;
+    font-weight: bold;
+    .logo, #weather, .counter{
+        position: absolute;
+    }
+    .logo {
+        width: 60px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    }
+    #weather {
+        color: $secondaryColour;
+        font-size: 1rem;
+        top: 0;
+        right: 20px;
+        & > * {
+            float: right;
+            padding: 20px 8px;
+            margin: 0;
+        }
+        img {
+            width: 45px;
+            filter: grayscale(2);
+        }
+    }
+    .counter {
+        top: 60px;
+        right: 140px;
+        .fa-heart {
+            font-size: 3rem;
+            color: black;
+        }
+        #userCounterClicks {
+            font-size: 2rem;
+            margin: 0;
+            padding-left: 5px;
+        }
+    }
+
 
 
 .navList {
-	padding: 0;
-	margin: 0 0 0 6%;
-	li {
-		list-style: none;
-		display: inline;
-		margin: 20px;
-		a {
-			text-decoration: none;
-			color: black;
-			font-size: 1.05rem;
-			transition: all 0.2s;
-			padding:10px;
+    padding: 0;
+    margin: 0 0 0 6%;
+    li {
+        list-style: none;
+        display: inline;
+        margin: 20px;
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 1.05rem;
+            transition: all 0.2s;
+            padding:10px;
 
-			&:hover {
-				color: $secondaryColour;
-			}
-		}
-	}
+            &:hover {
+                color: $secondaryColour;
+            }
+        }
+    }
+}
+
+header {
+    background: linear-gradient(rgba(255, 255, 255, 0.2), 100%, transparent 0%), url('../../assets/header.jpg') no-repeat fixed;
 }
 
 .headerContent{
-	background: linear-gradient(rgba(255, 255, 255, 0.2), 100%, transparent 0%), url('../../assets/header.jpg') no-repeat fixed;
-	margin:0 7%;
-	padding-right: 9%;
-	text-align: right;
-	.headerContent__Title {
-		padding-top: 200px;
-	}
+    margin:0 7%;
+    padding-right: 9%;
+    text-align: right;
+    .headerContent__Title {
+        padding-top: 200px;
+    }
 
-	.myClosetButton {
-		color: $primaryColour;
-		padding: 15px;
-		margin-bottom: 280px;
-		font-size: 1rem;
-		background: white;
-	}
+    .myClosetButton {
+        color: $primaryColour;
+        padding: 15px;
+        margin-bottom: 280px;
+        font-size: 1rem;
+        background: white;
+    }
 }
 
 //HEADER STYLE ENDS HEADER STYLE ENDS
@@ -150,14 +164,14 @@ nav {
 
 //SECTION DESCRIPTION SECTION DESCRIPTION
 .description {
-	margin: 220px 0 220px 0;
-	h2:first-child {
-		margin: 0;
-	}
-	p {
-		font-size: 1rem;
-		line-height: 25px;
-	}
+    margin: 220px 0 220px 0;
+    h2:first-child {
+        margin: 0;
+    }
+    p {
+        font-size: 1rem;
+        line-height: 25px;
+    }
 }
 //SECTION DESCRIPTION ENDS
 
@@ -168,41 +182,97 @@ nav {
 
 
 
-//MAIN WARDROPBE MAIN WARDROBE
+//MAIN WARDROPBE 
 .wardrobe {
-	h2 {
-		margin-bottom: 50px;
-	}
+    h2 {
+        margin-bottom: 50px;
+    }
 }
 
 .grid {
-	width: 100%;
-	min-height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
 }
 
-.grid-sizer {
-	width: 20%;
-}
 
 div.element-item { 
-	width: 20%; 
-	min-height: 300px;
-	padding: 20px;
-	max-width: 200px;
+    width: 20%; 
+    min-height: 270px;
+    padding: 20px;
+    max-width: 200px;
+    position: relative;
+    &:hover {
+		border: 2px solid $primaryColour;
+    }
+
+}
+.favoriteHeart {
+	position:absolute;
+	top: 20px;
+	right: 5px;
+	font-size: 0.8rem;
+	color: lightgrey;
 }
 
 .buttonFilter, #reloadButton {
-	width: 130px;
-	font-size: 0.9rem;
-	padding: 10px;
-	background: white;
-	color: $secondaryColour;
-	margin: 10px;
-	transition: all 0.2s;
-	&:hover {
-		background: $primaryColour;
-		color: white;
+    width: 130px;
+    font-size: 0.9rem;
+    padding: 10px;
+    background: white;
+    color: $secondaryColour;
+    margin: 10px;
+    transition: all 0.2s;
+    &:hover {
+        background: $primaryColour;
+        color: white;
+    }
+}
+.favorite {
+	// border: 2px solid $primaryColour;
+	.fa-heart {
+		color: red;
 	}
 }
 
-//MAIN WARDROBE ENDS MAIN WARDROBE ENDS
+//MAIN WARDROBE ENDS  
+
+
+
+//media queries begins
+
+@media (max-width: 700px) {
+    .navList {
+        display: none;
+    }
+
+    .counter #userCounterClicks {
+        font-size: 1rem;
+    }
+    .counter .fa-heart {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 940px) {
+    nav .logo {
+        width: 44px;
+        top: 42%;
+        left: 4%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    .buttonFilter {
+        width: 50%;
+    }
+
+    .grid {
+        width: 100%;
+    }
+
+    div.element-item { 
+        width: 50%; 
+        margin: 0;
+    }
+}

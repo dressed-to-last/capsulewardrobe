@@ -13,70 +13,73 @@
 
 
     <header id="home">
-		<nav class="clearfix">
-			<a href="#home"> 
-				<img class="logo" src="assets/logo.png" alt="hanger with clothes logo">
-			</a>
-			<ul class="navList clearfix">
-				<li><a href="#home">Home</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#filterNav">Wardrobe</a></li>
-			</ul>
-			<div id="weather"></div>
-			<div class="counter clearfix">
-				<i class="fa fa-heart" aria-hidden="true"></i>
-				<p id="userCounterClicks">30</p>
-			</div>
-		</nav>
-		<div class="headerContent">
-			<div class="headerContent__Title">
-				<h1>Capsule</h1>
-				<h1>Wardrobe</h1>
-			</div>
-			<button class="myClosetButton">Build My Closet</button>
-		</div>
-	</header>
+        <nav class="clearfix">
+            <a href="#home"> 
+                <img class="logo" src="assets/logo.png" alt="hanger with clothes logo">
+            </a>
+            <ul class="navList clearfix">
+                <li><a class="navButton" href="#home">Home</a></li>
+                <li><a class="navButton" href="#about">About</a></li>
+                <li><a class="navButton" href="#filterNav">Wardrobe</a></li>
+            </ul>
+            <div id="weather"></div>
+            <div class="counter clearfix">
+                <i class="fa fa-heart bigHeart" aria-hidden="true"></i>
+                <p id="userCounterClicks">30</p>
+            </div>
+        </nav>
+        <div class="headerContent">
+            <div class="headerContent__Title">
+                <h1>Capsule</h1>
+                <h1>Wardrobe</h1>
+            </div>
+            <a href="#filterNav" class="myClosetButton">Build My Closet</a>
+
+        </div>
+    </header>
 
 
-	<section id="about" class="description">
-		<div class="descriptionWrapper">
-			<h2>What is a wardrobe capsule,</h2>
-			<h2>and how do I make one?</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quo aut, sit culpa! Placeat dolorem obcaecati aspernatur doloremque distinctio, omnis iste facilis laboriosam, impedit quasi a commodi. Iste facere sapiente dolore, culpa iure earum voluptatem ipsa quos. Tempore sequi eum nobis explicabo officiis voluptates doloribus natus, voluptas praesentium tenetur. Totam!</p>
-		</div>
-	</section>
-
-
-
-	<main class="wardropbe">
-		<div class="wrapper">
-			<h2>Wardrobe</h2>
-			<!-- Nav buttons to filter returned products-->
-			<div id="filterNav" class="button-group filter-button-group">
-				<button class="buttonFilter" data-filter="*">All</button>
-				<button class="buttonFilter" data-filter=".tops">Tops</button>
-				<button class="buttonFilter" data-filter=".bottoms">Bottoms</button>
-				<button class="buttonFilter" data-filter=".dresses">Dresses</button>
-				<button class="buttonFilter" data-filter=".favorites">Favorites</button>
-			</div>
-			<div id="clothes" class="grid wrapper"></div>
-
-			<button id="reloadButton">Build A New Closet</button>
-		</div>
-	</main>
+    <section id="about" class="description">
+        <div class="descriptionWrapper">
+            <h2>What is a wardrobe capsule,</h2>
+            <h2>and how do I make one?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quo aut, sit culpa! Placeat dolorem obcaecati aspernatur doloremque distinctio, omnis iste facilis laboriosam, impedit quasi a commodi. Iste facere sapiente dolore, culpa iure earum voluptatem ipsa quos. Tempore sequi eum nobis explicabo officiis voluptates doloribus natus, voluptas praesentium tenetur. Totam!</p>
+        </div>
+    </section>
 
 
 
+    <main class="wardrobe">
+        <div class="wrapper">
+            <h2>Wardrobe</h2>
+            <!-- Nav buttons to filter returned products-->
+            <div id="filterNav" class="button-group filter-button-group">
+                <button class="buttonFilter" data-filter="*">All</button>
+                <button class="buttonFilter" data-filter=".tops">Tops</button>
+                <button class="buttonFilter" data-filter=".bottoms">Bottoms</button>
+                <button class="buttonFilter" data-filter=".dresses">Dresses</button>
+                <button class="buttonFilter" data-filter=".favorite">Favorites</button>
+            </div>
+            <div id="clothes" class="grid wrapper">
+
+            </div>
+
+        </div>
+    </main>
+
+    
 
 
-	<footer>
 
-	</footer>
+    <footer>
+        <p>hello</p>
+    
+    </footer>
 
 
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-	<script src="public/scripts/main.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="public/scripts/main.js"></script>
 </body>
 </html>
