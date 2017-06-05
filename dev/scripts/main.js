@@ -1,13 +1,12 @@
 var styleApp = {};
 
-styleApp.weatherKey = "62166a9499478fb8";
+styleApp.weatherKey = "1decf782403e5b0c";
 styleApp.key = "uid9849-39423043-50";
 
 styleApp.init = function() {
   styleApp.getWeatherPieces();
   styleApp.getStylePieces();
   styleApp.reloadButton();
-  styleApp.countProducts();
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -273,6 +272,8 @@ styleApp.filterClothesPieces = function(styleData) {
         let container = "";
         let warmClassNames = "";
 
+
+
         //filter products in #clothes div based on tops, bottoms, dress, coats
         const topsFilter = [
           "womens-tops",
@@ -368,6 +369,8 @@ styleApp.filterClothesPieces = function(styleData) {
         ).append(imgEl, nameEl, heart);
 
         $("#clothes").append(container);
+
+        
       } //closes temperature filter if statement
     }); //closes styleData.products.forEach for warm clothes
 
@@ -384,6 +387,8 @@ styleApp.filterClothesPieces = function(styleData) {
         const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
         let container = "";
         let coldClassNames = "";
+
+
 
         //filter products in #clothes div based on tops, bottoms, dress, coats
         const topsFilter = [
@@ -480,9 +485,13 @@ styleApp.filterClothesPieces = function(styleData) {
         $("#clothes").append(container);
       } //closes if statement that filters by temperature
     }); //closes styleData.products.forEach for cold clothing
+
+    $('.element-item').on('click', function() {
+   $(this).css({"border":"2px solid #13555a"});
+});
     styleApp.isotopeFeatures();
+    styleApp.countProducts();
   }; //closes styleApp.displayClothesByTemp
-  styleApp.countProducts();
 }; //closes filterClothesPieces function
 
 //count number of products user has left
@@ -491,7 +500,6 @@ styleApp.countProducts = function() {
 
   $(".element-item").click(function() {
     $("#userCounterClicks").empty();
-    // $(".element-item").addClass("favorite");
     counterNum = counterNum - 1;
 
     const counter = $("<span>").text(counterNum);
@@ -499,16 +507,17 @@ styleApp.countProducts = function() {
 
     if (counterNum <= 0) {
       counterNum = 1;
-      console.log("no more products left!");
     }
   });
 };
+
+
 
 //smooth scroll so results display on screen in a more obvious manner
 $(".myClosetButton").on("click", function() {
   $("html,body").animate(
     {
-      scrollTop: $(".filterNav").offset().top
+      scrollTop: $("#filterNav").offset().top
     },
     "slow"
   );
@@ -523,11 +532,10 @@ styleApp.reloadButton = function() {
 };
 
 
-
 styleApp.isotopeFeatures = function(){
-
-    // init Isotope
     var $grid = $('#clothes').isotope({
+      columnWidth: 5,
+      resizable: false,
 
     });
     // filter items on button click
@@ -535,14 +543,10 @@ styleApp.isotopeFeatures = function(){
       var filterValue = $(this).attr('data-filter');
       $grid.isotope({ filter: filterValue });
 
-      console.log(filterValue)
+      // console.log(filterValue);
     });
 }
 
 $(function() {
   styleApp.init();
 });
-
-//got cold and warm functions working
-//got images printing to page
-//issue is both cold and warm are printing at once - maybe review if else statement
