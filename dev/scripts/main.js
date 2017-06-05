@@ -1,12 +1,11 @@
 var styleApp = {};
 
-styleApp.weatherKey = "62166a9499478fb8";
+styleApp.weatherKey = "1decf782403e5b0c";
 styleApp.key = "uid9849-39423043-50";
 
 styleApp.init = function() {
   styleApp.getWeatherPieces();
   styleApp.getStylePieces();
-  styleApp.reloadButton();
 };
 
 //when user clicked "create my wardrobe" in the header, go to the library section.
@@ -144,47 +143,7 @@ styleApp.getStylePieces = function() {
     styleApp.filterClothesPieces(res);
   });
 
-  //requesting list of 50 products from shopstyle with an offset of 350 to request the next 50 products
-  $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
-    method: "GET",
-    dataType: "json",
-    data: {
-      pid: styleApp.key,
-      offset: 350,
-      limit: 50
-    }
-  }).then(function(res) {
-    styleApp.filterClothesPieces(res);
-  });
 
-  //requesting list of 50 products from shopstyle with an offset of 400 to request the next 50 products
-  $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
-    method: "GET",
-    dataType: "json",
-    data: {
-      pid: styleApp.key,
-      offset: 400,
-      limit: 50
-    }
-  }).then(function(res) {
-    styleApp.filterClothesPieces(res);
-  });
-
-  //requesting list of 50 products from shopstyle with an offset of 540 to request the next 50 products
-  $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
-    method: "GET",
-    dataType: "json",
-    data: {
-      pid: styleApp.key,
-      offset: 450,
-      limit: 50
-    }
-  }).then(function(res) {
-    styleApp.filterClothesPieces(res);
-  });
 };
 
 styleApp.filterClothesPieces = function(styleData) {
@@ -268,7 +227,9 @@ styleApp.filterClothesPieces = function(styleData) {
         var name = product.name;
         const imgEl = $("<img>").attr("src", img);
         const nameEl = $("<h4>").text(name);
-        const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
+
+        var heart = $('<i>').addClass("fa").addClass("fa-heart").addClass("favoriteHeart");
+
         let container = "";
         let warmClassNames = "";
 
@@ -328,6 +289,7 @@ styleApp.filterClothesPieces = function(styleData) {
           "raincoats-and-trenchcoats"
         ];
 
+
         //if product has a category ID related to tops, add class of .tops
         var filteredTopsNum = topsFilter.indexOf(productCategory);
         if (filteredTopsNum > -1) {
@@ -367,6 +329,53 @@ styleApp.filterClothesPieces = function(styleData) {
         ).append(imgEl, nameEl, heart);
 
         $("#clothes").append(container);
+
+
+
+
+
+
+
+
+
+
+        // // create an empty array to store user's choice when clicked. push into the array!
+        // // when user click/ select the element-item div with appropriate id, push into the empty favorite array and display that.
+
+        // let idEl= $(".element-item").attr("id", productCategory);
+
+        // for (let i = 0; i < warmCategory.length; i = i + 1) {
+        //   styleApp.warmCategoryfavoritesFilter.push()
+        // }
+        // const favoritesFilter = [];
+
+        // var filteredSelectedNum = favoritesFilter.indexOf(productCategory);
+        // if (filteredSelectedNum > -1) {
+        //   warmClassNames += "favorites";
+        // }
+
+        // $(".element-item").on("click", function(){
+        //   $(favoritesFilter).push(product.categories[0].id);
+
+        // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       } //closes temperature filter if statement
     }); //closes styleData.products.forEach for warm clothes
 
@@ -380,7 +389,7 @@ styleApp.filterClothesPieces = function(styleData) {
         var name = product.name;
         const imgEl = $("<img>").attr("src", img);
         const nameEl = $("<h4>").text(name);
-        const heart = $(`<i class=“fa fa-heart-o” aria-hidden=“true”></i>`);
+        var heart = $('<i>').addClass("fa").addClass("fa-heart").addClass("favoriteHeart");
         let container = "";
         let coldClassNames = "";
 
@@ -492,37 +501,42 @@ styleApp.countProducts = function() {
     $("#userCounterClicks").empty();
     counterNum = counterNum - 1;
 
+    $(this).toggleClass("favorite");
+
+    // $("i.fa-heart").addClass("favorite");
+
+
     const counter = $("<span>").text(counterNum);
     $("#userCounterClicks").append(counter);
 
     if (counterNum <= 0) {
       counterNum = 1;
       console.log("no more products left!");
+
     }
   });
 };
 
-//smooth scroll so results display on screen in a more obvious manner
-$(".myClosetButton").on("click", function() {
-  $("html,body").animate(
-    {
-      scrollTop: $("#filterNav").offset().top
-    },
-    "slow"
-  );
+//smooth scroll
+$('a[href*="#"]:not([href="#"])').click(function() {
+  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+    if (target.length) {
+      $('html, body').animate({
+        scrollTop: target.offset().top - 200
+      }, 1000);
+      return false;
+    }
+  }
 });
 
-//reload button that will reload the page
-styleApp.reloadButton = function() {
-  $("#reloadButton").on("click", function() {
-    // console.log(reloadButton);
-    location.reload();
-  });
-};
 
 
 styleApp.isotopeFeatures = function(){
     var $grid = $('#clothes').isotope({
+    	columnWidth: 5,
+    	resizable: false
 
     });
     // filter items on button click
