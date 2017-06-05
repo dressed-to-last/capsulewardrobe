@@ -1,104 +1,97 @@
-//need to add these to variables
-// font-family: 'Montserrat', sans-serif;
-// font-family: 'Roboto', sans-serif;
-
 $primaryColour: #13555A;
 $secondaryColour: #98903F;
 $tertiaryColour: #E5E2CC;
 @import 'setup';
 
 
-//GENERAL STYLE 
+//GENERAL STYLE
 body {
 	margin: 0 auto;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	letter-spacing: 1px;
 	font-size: 10px;
 	text-align: center;
 	background: white;
 }
 
+h1, h2, h3, h4 {
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
 h1 {
-	font-size: 5rem;
-	padding-top: 300px;
+	font-size: calc(45px + (90 - 45) * ((100vw - 320px) / (1440 - 320)));
+	font-weight: normal;
 }
 
-
-
-
-
-//HEADER STYLE HEADER STYLE HEADER STYLE
-header {
-	width: 100vw;
-	background: url('../../assets/header.jpg') no-repeat center;
-	background-position: cover;
+h2 {
+	font-size: 2rem;
+	color: $secondaryColour;
+	margin-bottom: 20px;
 }
 
-.wrapper {
-	width: 1000px;
+.descriptionWrapper, .wrapper {
 	margin: 0 auto;
 }
 
-.grid {
-	width: 100%;
-	min-height: 100vh;
 }
 
-.grid-sizer {
-	width: 20%;
+.wrapper {
+	width: 900px;
 }
 
-div.element-item { 
-	width: 20%; 
-	min-height: 300px;
-	padding: 20px;
-	max-width: 200px;
-	cursor: pointer;
-	h4 {
-		text-align: center;
-	}
-	img {
-		
-	}
+
 }
 
-.myClosetButton {
-	padding: 20px;
-	margin-bottom: 100px;
-	// text-align: center;
-	// position: absolute;
-	// top: 50%;
-	// left: 50%;
-	// transform: translate(-50%, -50%);
+button {
+	border: 4px solid $primaryColour;
+	letter-spacing: 1px;
 }
 .grid-sizer {
 	width: 100px;
 }
 
-.submitButton {
-	padding: 20px;
-	font-size: 18px;
-}
 
+
+
+//HEADER STYLE HEADER STYLE HEADER STYLE
 nav {
 	position: fixed;
+	z-index: 2;
 	top: 0;
 	width: 100%;
-	background: white;
-	z-index: 1;
-	// padding: 50px;
-	.logo {
-		width: 40px;
+
 		position: absolute;
-		top: 15px;
-		left: 15px;
+	}
+	.logo {
+		width: 60px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 	#weather {
-		position: absolute;
-		top: 15px;
-		right: 15px;
 
 		& > * {
 			float: right;
+			padding: 20px 8px;
+			margin: 0;
+		}
+		img {
+			width: 45px;
+			filter: grayscale(2);
+		}
+	}
+	.counter {
+		top: 60px;
+		right: 140px;
+		.fa-heart {
+			font-size: 3rem;
+		}
+		#userCounterClicks {
+			font-size: 2rem;
+			margin: 0;
+			padding-left: 5px;
 		}
 		img {
 			width: 35px;
@@ -107,23 +100,23 @@ nav {
 }
 
 
-.innerNav {
-	padding: 10px 0;
-	margin: 0;
 	li {
 		list-style: none;
 		display: inline;
+		margin: 20px;
 		a {
 			text-decoration: none;
-			font-size: 1rem;
-			padding: 5px;
+			color: black;
+			font-size: 1.05rem;
+			transition: all 0.2s;
+			padding:10px;
+
+			&:hover {
+				color: $secondaryColour;
+			}
 		}
 	}
-	.fa-heart {
-		// color: red;
-		font-size: 1.5rem;
-	}
-}
+
 
 //HEADER STYLE ENDS HEADER STYLE ENDS
 .about {
@@ -133,6 +126,3 @@ nav {
 	color: red;
 }
 
-.selected {
-	border: 2px solid red;
-}
