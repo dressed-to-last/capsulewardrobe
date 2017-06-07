@@ -6,7 +6,7 @@ $secondaryFont: 'Roboto', sans-serif;
 @import 'setup';
 
 
-//general styles begins
+//general style begins
 body {
     margin: 0 auto;
     font-family: $secondaryFont;
@@ -14,6 +14,7 @@ body {
     letter-spacing: 1px;
     font-size: 10px;
     text-align: center;
+    background: white;
 }
 
 img {
@@ -26,7 +27,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: calc(45px + (90 - 45) * ((100vw - 320px) / (1440 - 320)));
+    font-size: calc(45px + (95 - 45) * ((100vw - 320px) / (1440 - 320)));
     font-weight: normal;
 }
 
@@ -41,7 +42,7 @@ h2 {
 }
 
 .descriptionWrapper {
-    width: 70%;
+    width: 60vw;
 }
 
 .wrapper {
@@ -49,22 +50,30 @@ h2 {
     max-width: 100%;
 }
 
-input:focus {
-    outline:none;
-}
-
-button {
-    border: 4px solid $primaryColour;
+button, .myClosetButton {
+    border: 3px solid $primaryColour;
     letter-spacing: 1px;
+    font-size: 1rem;
+    background: white;
+    outline: none;
+    background: $primaryColour;
+    color: white;
+    font-weight: 300;
+    transition: all 0.2s;
+    &:hover {
+        background-color: white;
+        color: $secondaryColour;
+
+    }
 }
+//general style ends
 
-// general styles ends
 
 
-//HEADER STYLE 
+//header style starts
 nav {
     position: fixed;
-    z-index: 2;
+    z-index: 9;
     top: 0;
     width: 100%;
     background: $tertiaryColour;
@@ -79,8 +88,6 @@ nav {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-    }
-
     }
     #weather {
         color: $secondaryColour;
@@ -102,7 +109,6 @@ nav {
         right: 140px;
         .fa-heart {
             font-size: 3rem;
-
             color: black;
         }
         #userCounterClicks {
@@ -111,8 +117,7 @@ nav {
             padding-left: 5px;
         }
     }
-
-
+}
 
 .navList {
     padding: 0;
@@ -127,7 +132,6 @@ nav {
             font-size: 1.05rem;
             transition: all 0.2s;
             padding:10px;
-
             &:hover {
                 color: $secondaryColour;
             }
@@ -135,38 +139,29 @@ nav {
     }
 }
 
-header {
-    background: linear-gradient(rgba(255, 255, 255, 0.2), 100%, transparent 0%), url('../../assets/header.jpg') no-repeat fixed;
-}
-
-
-header {
-    background: linear-gradient(rgba(255, 255, 255, 0.2), 100%, transparent 0%), url('../../assets/header.jpg') no-repeat fixed;
-}
-
 .headerContent{
+    background: linear-gradient(rgba(255, 255, 255, 0.2), 100%, transparent 0%), url('../../assets/header.jpg') no-repeat fixed;
     margin:0 7%;
     padding-right: 9%;
-    text-align: right;
     .headerContent__Title {
         padding-top: 200px;
+        padding-bottom: 400px;
+        text-align: right;
     }
-
     .myClosetButton {
-        color: $primaryColour;
-        padding: 15px;
-        margin-bottom: 280px;
-        font-size: 1rem;
-        background: white;
+        padding:20px 30px;
+        text-decoration: none;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
-
-//HEADER STYLE ENDS HEADER STYLE ENDS
-
+//header style ends
 
 
 
-//SECTION DESCRIPTION SECTION DESCRIPTION
+//section description style starts
 .description {
     margin: 220px 0 220px 0;
     h2:first-child {
@@ -177,20 +172,15 @@ header {
         line-height: 25px;
     }
 }
-//SECTION DESCRIPTION ENDS
+//section description style ends
 
 
 
-
-
-
-
-
-//MAIN WARDROPBE 
-.wardrobe {
-    h2 {
-        margin-bottom: 50px;
-    }
+//main wardrobe style starts
+.buttonFilter {
+    width: 110px;
+    padding:10px 5px;
+    margin: 20px 10px 60px 10px;
 }
 
 .grid {
@@ -199,66 +189,77 @@ header {
     margin: 0 auto;
 }
 
-
 div.element-item { 
     width: 20%; 
-<<<<<<< HEAD
-    min-height: 275px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    max-width: 200px;
-=======
     min-height: 270px;
     padding: 20px;
     max-width: 200px;
     position: relative;
-    &:hover {
-		border: 2px solid $primaryColour;
-    }
-
-}
-.favoriteHeart {
-	position:absolute;
-	top: 20px;
-	right: 5px;
-	font-size: 0.8rem;
-	color: lightgrey;
-}
-
-.buttonFilter, #reloadButton {
-    width: 130px;
-    font-size: 0.9rem;
-    padding: 10px;
-    background: white;
-    color: $secondaryColour;
-    margin: 10px;
     transition: all 0.2s;
     &:hover {
-        background: $primaryColour;
-        color: white;
+        transform: scale(1.1);
+        border: 2px solid $primaryColour;
+        background: white;
+        z-index: 2;
     }
+}
+
+.favoriteHeart {
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    color: lightgrey;
 }
 
 .favorite {
-	// border: 2px solid $primaryColour;
-	.fa-heart {
-		color: red;
-	}
+    .fa-heart {
+        color: red;
+    }
+}
+//main wardrobe style ends 
+
+
+
+//footer style starts
+footer {
+    margin-top: 200px;
+    background: $tertiaryColour;
+    p {
+        padding: 110px 20px 40px 20px;
+        margin: 0; 
+        font-size: 0.9rem;
+    }
+}
+//footer style ends
+
+
+
+//media query starts
+@media (max-width: 940px) {
+    nav .logo {
+        width: 45px;
+        top: 50%;
+        left: 5%;
+    }
+    .headerContent{
+        background-position: center;
+    }
+    .buttonFilter {
+        width: 50%;
+    }
+    div.element-item { 
+        width: 50%; 
+        margin: 0;
+    }
 }
 
-//MAIN WARDROBE ENDS  
-
-
-
-//media queries begins
-
-@media (max-width: 700px) {
+@media (max-width: 770px) {
     .navList {
-        display: none;
+        li {
+            margin: 3px;
+        }
     }
-
     .counter #userCounterClicks {
         font-size: 1rem;
     }
@@ -266,28 +267,4 @@ div.element-item {
         font-size: 2rem;
     }
 }
-
-@media (max-width: 940px) {
-    nav .logo {
-        width: 44px;
-        top: 42%;
-        left: 4%;
-        transform: translate(-50%, -50%);
-    }
-
-
-    .buttonFilter {
-        width: 50%;
-    }
-
-    .grid {
-        width: 100%;
-    }
-
-    div.element-item { 
-        width: 50%; 
-        margin: 0;
-    }
-}
-
-}
+//media query ends
