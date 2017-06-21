@@ -482,8 +482,8 @@ $('a[href*="#"]:not([href="#"])').click(function() {
 
 styleApp.isotopeFeatures = function(){
     var $grid = $('#clothes').isotope({
-    	columnWidth: 5,
-    	resizable: false
+      columnWidth: 5,
+      resizable: false
     });
     // filter items on button click
     $('.buttonFilter').on( 'click', function() {
