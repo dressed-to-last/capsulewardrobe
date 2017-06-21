@@ -1,0 +1,326 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+  display: block; }
+
+audio, canvas, video {
+  display: inline-block; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden] {
+  display: none; }
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+a:focus {
+  outline: thin dotted; }
+
+a:active, a:hover {
+  outline: 0; }
+
+h1 {
+  font-size: 2em; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b, strong {
+  font-weight: 700; }
+
+dfn {
+  font-style: italic; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+q {
+  quotes: \201C \201D \2018 \2019; }
+
+small {
+  font-size: 80%; }
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -.5em; }
+
+sub {
+  bottom: -.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0; }
+
+button, input {
+  line-height: normal; }
+
+button, html input[type=button],
+input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled], input[disabled] {
+  cursor: default; }
+
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0; }
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body, figure {
+  margin: 0; }
+
+legend, button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  letter-spacing: 1px;
+  font-size: 10px;
+  text-align: center;
+  background: white; }
+
+img {
+  max-width: 100%; }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: "Montserrat", sans-serif; }
+
+h1 {
+  font-size: calc(45px + (95 - 45) * ((100vw - 320px) / (1440 - 320)));
+  font-weight: normal; }
+
+h2 {
+  font-size: 2rem;
+  color: #98903F;
+  margin-bottom: 20px; }
+
+.descriptionWrapper, .wrapper {
+  margin: 0 auto; }
+
+.descriptionWrapper {
+  width: 70%;
+  text-align: center;
+  background-color: #E5E2CC;
+  padding: 20px; }
+
+.wrapper {
+  width: 900px;
+  max-width: 100%; }
+
+button, .myClosetButton {
+  border: 3px solid #13555A;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  background: white;
+  outline: none;
+  background: #13555A;
+  color: white;
+  font-weight: 300;
+  transition: all 0.2s; }
+  button:hover, .myClosetButton:hover {
+    background-color: white;
+    color: #98903F; }
+
+nav {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  width: 100%;
+  background: #E5E2CC;
+  padding: 30px;
+  text-align: left;
+  font-weight: bold; }
+  nav .logo, nav #weather, nav .counter {
+    position: absolute; }
+  nav .logo {
+    width: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  nav #weather {
+    color: #98903F;
+    font-size: 1rem;
+    top: 0;
+    right: 20px; }
+    nav #weather > * {
+      float: right;
+      padding: 20px 8px;
+      margin: 0; }
+    nav #weather img {
+      width: 45px;
+      filter: grayscale(2); }
+  nav .counter {
+    top: 60px;
+    right: 140px; }
+    nav .counter .fa-heart {
+      font-size: 3rem;
+      color: black; }
+    nav .counter #userCounterClicks {
+      font-size: 2rem;
+      margin: 0;
+      padding-left: 5px; }
+
+.navList {
+  padding: 0;
+  margin: 0 0 0 6%; }
+  .navList li {
+    list-style: none;
+    display: inline;
+    margin: 20px; }
+    .navList li a {
+      text-decoration: none;
+      color: black;
+      font-size: 1.05rem;
+      transition: all 0.2s;
+      padding: 10px; }
+      .navList li a:hover {
+        color: #98903F; }
+
+.headerContent {
+  background: linear-gradient(rgba(255, 255, 255, 0.2), 100%, transparent 0%), url("../../assets/header.jpg") no-repeat fixed;
+  margin: 0 7%;
+  padding-right: 9%; }
+  .headerContent .headerContent__Title {
+    padding-top: 200px;
+    padding-bottom: 400px;
+    text-align: right; }
+  .headerContent .myClosetButton {
+    padding: 20px 30px;
+    text-decoration: none;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+
+.description {
+  margin: 220px 0 220px 0; }
+  .description h2:first-child {
+    margin: 0; }
+  .description p {
+    font-size: 1rem;
+    line-height: 25px; }
+
+.buttonFilter {
+  width: 110px;
+  padding: 10px 5px;
+  margin: 20px 10px 60px 10px; }
+
+.grid {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto; }
+
+div.element-item {
+  width: 20%;
+  min-height: 270px;
+  padding: 20px;
+  max-width: 200px;
+  position: relative;
+  transition: all 0.2s; }
+  div.element-item:hover {
+    transform: scale(1.1);
+    border: 5px solid #13555A;
+    background: white;
+    z-index: 2; }
+
+.favoriteHeart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.9rem;
+  color: lightgrey; }
+
+.favorite .fa-heart {
+  color: red; }
+
+footer {
+  margin-top: 200px;
+  background: #E5E2CC; }
+  footer p {
+    padding: 50px;
+    margin: 0;
+    font-size: 0.9rem; }
+
+@media (max-width: 940px) {
+  nav .logo {
+    width: 45px;
+    top: 50%;
+    left: 5%; }
+  .headerContent {
+    background-position: center; }
+  .buttonFilter {
+    width: 50%; }
+  div.element-item {
+    width: 50%;
+    margin: 0; } }
+
+@media (max-width: 770px) {
+  .navList li {
+    margin: 3px; }
+  .counter #userCounterClicks {
+    font-size: 1rem; }
+  .counter .fa-heart {
+    font-size: 2rem; } }
