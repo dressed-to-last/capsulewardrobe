@@ -20,7 +20,7 @@ styleApp.init = function() {
 //ajax call to get weather data
 styleApp.getWeatherPieces = function() {
   $.ajax({
-    url: `http://api.wunderground.com/api/${styleApp.weatherKey}/conditions/q/autoip.json`,
+    url: `https://api.wunderground.com/api/${styleApp.weatherKey}/conditions/q/autoip.json`,
     method: "GET",
     dataType: "jsonp"
   }).then(function(res) {
@@ -48,7 +48,7 @@ styleApp.displayWeatherPieces = function(weather) {
 styleApp.getStylePieces = function() {
   //requesting list of 50 products from shopstyle
   $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
+    url: "https://api.shopstyle.com/api/v2/products",
     method: "GET",
     dataType: "json",
     data: {
@@ -62,7 +62,7 @@ styleApp.getStylePieces = function() {
 
   //requesting list of 50 products from shopstyle with an offset of 50 to request the next 50 products
   $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
+    url: "https://api.shopstyle.com/api/v2/products",
     method: "GET",
     dataType: "json",
     data: {
@@ -76,7 +76,7 @@ styleApp.getStylePieces = function() {
 
   //requesting list of 50 products from shopstyle with an offset of 100 to request the next 50 products
   $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
+    url: "https://api.shopstyle.com/api/v2/products",
     method: "GET",
     dataType: "json",
     data: {
@@ -90,7 +90,7 @@ styleApp.getStylePieces = function() {
 
   //requesting list of 50 products from shopstyle with an offset of 150 to request the next 50 products
   $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
+    url: "https://api.shopstyle.com/api/v2/products",
     method: "GET",
     dataType: "json",
     data: {
@@ -104,7 +104,7 @@ styleApp.getStylePieces = function() {
 
   //requesting list of 50 products from shopstyle with an offset of 200 to request the next 50 products
   $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
+    url: "https://api.shopstyle.com/api/v2/products",
     method: "GET",
     dataType: "json",
     data: {
@@ -118,7 +118,7 @@ styleApp.getStylePieces = function() {
 
   //requesting list of 50 products from shopstyle with an offset of 250 to request the next 50 products
   $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
+    url: "https://api.shopstyle.com/api/v2/products",
     method: "GET",
     dataType: "json",
     data: {
@@ -132,7 +132,7 @@ styleApp.getStylePieces = function() {
 
   //requesting list of 50 products from shopstyle with an offset of 300 to request the next 50 products
   $.ajax({
-    url: "http://api.shopstyle.com/api/v2/products",
+    url: "https://api.shopstyle.com/api/v2/products",
     method: "GET",
     dataType: "json",
     data: {
